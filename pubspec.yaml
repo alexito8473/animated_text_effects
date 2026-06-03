@@ -1,7 +1,8 @@
 name: animated_text_effects
-description: "A Flutter plugin for text with multiple animation effects: fade, gradient, wave, typewriter, bounce, shimmer, slide, blur."
+description: "A Flutter package with 35 composable text animation effects and 5 animated counter widgets."
 version: 0.0.1
-homepage:
+homepage: https://github.com/alexito8473/animated_text_effects
+repository: https://github.com/alexito8473/animated_text_effects
 
 environment:
   sdk: ^3.11.5

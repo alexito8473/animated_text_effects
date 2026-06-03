@@ -1,0 +1,25 @@
+# Git
+.git/
+.gitignore
+.github/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+
+# Example app
+example/
+
+# Tests
+test/
+integration_test/
+
+# Tooling
+.dart_tool/
+.packages
+pubspec.lock
+
+# OS files
+.DS_Store
+Thumbs.db
