@@ -1,0 +1,47 @@
+import 'dart:math';
+import 'package:flutter/material.dart';
+import '../core/text_effect.dart';
+import '../core/character_animation.dart';
+
+class MatrixRainEffect extends TextEffect {
+  final Color matrixGreen;
+  final double fallSpeed;
+  final double blurSigma;
+
+  const MatrixRainEffect({
+    super.duration = const Duration(milliseconds: 2000),
+    super.curve = Curves.linear,
+    this.matrixGreen = Colors.green,
+    this.fallSpeed = 1.0,
+    this.blurSigma = 2.0,
+    super.delayBetweenChars = Duration.zero,
+  });
+
+  @override
+  Duration getTotalDuration(int charCount) {
+    return duration;
+  }
+
+  @override
+  List<CharacterAnimation> getAnimations(double progress, int charCount) {
+    if (charCount == 0) return [];
+
+    final curved = applyCurve(progress);
+    final returnT = sin(curved * pi);
+
+    return List.generate(charCount, (index) {
+      final n = noise(index);
+      final fall = (curved * fallSpeed - n * 0.3).clamp(0.0, 1.0);
+      final brightness = 1.0 - fall;
+
+      return CharacterAnimation(
+        color: returnT > 0.001
+            ? matrixGreen.withValues(alpha: (0.2 + brightness * 0.8).clamp(0.0, 1.0))
+            : null,
+        translation: Offset(0, -fall * 30.0 * returnT),
+        blurSigma: blurSigma * (1.0 - brightness) * returnT,
+        opacity: 1.0 + ((0.3 + brightness * 0.7) - 1.0) * returnT,
+      );
+    });
+  }
+}

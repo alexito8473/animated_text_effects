@@ -18,6 +18,7 @@ class AnimatedText extends StatefulWidget {
   final StrutStyle? strutStyle;
   final TextHeightBehavior? textHeightBehavior;
   final TextWidthBasis textWidthBasis;
+  final bool keepAlive;
 
   const AnimatedText(
     this.text, {
@@ -33,6 +34,7 @@ class AnimatedText extends StatefulWidget {
     this.strutStyle,
     this.textHeightBehavior,
     this.textWidthBasis = TextWidthBasis.parent,
+    this.keepAlive = true,
   });
 
   @override
@@ -40,7 +42,10 @@ class AnimatedText extends StatefulWidget {
 }
 
 class _AnimatedTextState extends State<AnimatedText>
-    with SingleTickerProviderStateMixin {
+    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+
+  @override
+  bool get wantKeepAlive => widget.keepAlive;
   late AnimationController _controller;
 
   Duration _calculateDuration() {
@@ -51,46 +56,84 @@ class _AnimatedTextState extends State<AnimatedText>
         .reduce((a, b) => a > b ? a : b);
   }
 
+  void _onTick() => setState(() {});
+
+  void _initController(Duration duration) {
+    if (widget.controller != null) {
+      widget.controller!.attach(this, duration, _onTick);
+      _controller = widget.controller!.animationController!;
+    } else {
+      _controller = AnimationController(vsync: this, duration: duration);
+      if (duration > Duration.zero) {
+        if (widget.autoplay && widget.repeat) {
+          _controller.repeat(reverse: widget.reverse);
+        } else if (widget.autoplay) {
+          _controller.forward();
+        }
+      }
+      _controller.addListener(_onTick);
+    }
+  }
+
   @override
   void initState() {
     super.initState();
-    final duration = _calculateDuration();
-    _controller = AnimationController(vsync: this, duration: duration);
-
-    if (widget.controller != null) {
-      widget.controller!.animationController = _controller;
-    }
-
-    if (duration > Duration.zero) {
-      if (widget.autoplay && widget.repeat) {
-        _controller.repeat(reverse: widget.reverse);
-      } else if (widget.autoplay) {
-        _controller.forward();
-      }
-    }
-    _controller.addListener(() => setState(() {}));
+    _initController(_calculateDuration());
   }
 
   @override
   void dispose() {
-    _controller.dispose();
+    if (widget.controller != null) {
+      widget.controller!.detach();
+    } else {
+      _controller.dispose();
+    }
     super.dispose();
   }
 
   @override
   void didUpdateWidget(AnimatedText oldWidget) {
     super.didUpdateWidget(oldWidget);
+
     if (oldWidget.controller != widget.controller) {
       if (oldWidget.controller != null) {
-        oldWidget.controller!.animationController = null;
+        oldWidget.controller!.detach();
       }
       if (widget.controller != null) {
-        widget.controller!.animationController = _controller;
+        widget.controller!.attach(this, _calculateDuration(), _onTick);
+        _controller = widget.controller!.animationController!;
+      } else {
+        _controller = AnimationController(vsync: this, duration: _calculateDuration());
+        if (widget.autoplay && widget.repeat) {
+          _controller.repeat(reverse: widget.reverse);
+        } else if (widget.autoplay) {
+          _controller.forward();
+        }
+        _controller.addListener(_onTick);
       }
+      return;
     }
-    final newDuration = _calculateDuration();
-    if (newDuration != _controller.duration) {
-      _controller.duration = newDuration;
+
+    final effectsChanged = oldWidget.effects != widget.effects;
+    final textChanged = oldWidget.text != widget.text;
+    final repeatChanged = oldWidget.repeat != widget.repeat ||
+        oldWidget.reverse != widget.reverse;
+
+    if (effectsChanged || textChanged || repeatChanged) {
+      _controller.duration = _calculateDuration();
+      if (_controller.duration != null && _controller.duration! > Duration.zero) {
+        _controller.reset();
+        if (widget.repeat) {
+          _controller.repeat(reverse: widget.reverse);
+        } else if (widget.autoplay) {
+          _controller.forward();
+        }
+      }
+    } else {
+      final newDuration = _calculateDuration();
+      if (newDuration != _controller.duration) {
+        _controller.duration = newDuration;
+      }
     }
   }
 
@@ -122,9 +165,9 @@ class _AnimatedTextState extends State<AnimatedText>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     final effectiveStyle = widget.style ?? DefaultTextStyle.of(context).style;
     final animations = _computeAnimations();
-
     return LayoutBuilder(
       builder: (context, constraints) {
         final maxWidth =
@@ -139,13 +182,14 @@ class _AnimatedTextState extends State<AnimatedText>
           textWidthBasis: widget.textWidthBasis,
         )..layout(maxWidth: maxWidth);
 
-        final positions = <int, Offset>{};
+        final charRects = <int, Rect>{};
         for (int i = 0; i < widget.text.length; i++) {
           final boxes = tp.getBoxesForSelection(
             TextSelection(baseOffset: i, extentOffset: i + 1),
           );
           if (boxes.isNotEmpty) {
-            positions[i] = Offset(boxes.first.left, boxes.first.top);
+            final b = boxes.first;
+            charRects[i] = b.toRect();
           }
         }
 
@@ -162,8 +206,8 @@ class _AnimatedTextState extends State<AnimatedText>
                 }
 
                 final anim = animations[i];
-                final pos = positions[i];
-                if (pos == null) return const SizedBox.shrink();
+                final rect = charRects[i];
+                if (rect == null) return const SizedBox.shrink();
 
                 Widget charWidget = Text(
                   char,
@@ -173,41 +217,104 @@ class _AnimatedTextState extends State<AnimatedText>
                   textDirection: widget.textDirection,
                 );
 
+                if (anim.backgroundColor != null) {
+                  charWidget = Container(
+                    color: anim.backgroundColor,
+                    child: charWidget,
+                  );
+                }
+
+                Widget clipContent = charWidget;
+
                 if (anim.blurSigma > 0) {
-                  charWidget = ImageFiltered(
+                  clipContent = ImageFiltered(
                     imageFilter: ui.ImageFilter.blur(
                       sigmaX: anim.blurSigma,
                       sigmaY: anim.blurSigma,
                     ),
-                    child: charWidget,
+                    child: clipContent,
                   );
                 }
 
                 if (anim.opacity < 1.0) {
-                  charWidget = Opacity(
+                  clipContent = Opacity(
                     opacity: anim.opacity,
-                    child: charWidget,
+                    child: clipContent,
                   );
                 }
 
                 if (anim.translation != Offset.zero) {
-                  charWidget = Transform.translate(
+                  clipContent = Transform.translate(
                     offset: anim.translation,
-                    child: charWidget,
+                    child: clipContent,
                   );
                 }
-                if (anim.scale != 1.0) {
-                  charWidget = Transform.scale(
-                    scale: anim.scale,
+                final sx = anim.scale * anim.scaleX;
+                final sy = anim.scale * anim.scaleY;
+                if (sx != 1.0 || sy != 1.0) {
+                  clipContent = Transform(
                     alignment: Alignment.topLeft,
-                    child: charWidget,
+                    transform: Matrix4.diagonal3Values(sx, sy, 1),
+                    child: clipContent,
+                  );
+                }
+
+                if (anim.rotation != 0.0) {
+                  clipContent = Transform.rotate(
+                    angle: anim.rotation,
+                    child: clipContent,
+                  );
+                }
+
+                if (anim.rotationX != 0.0) {
+                  clipContent = Transform(
+                    alignment: Alignment.topLeft,
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..rotateX(anim.rotationX),
+                    child: clipContent,
+                  );
+                }
+
+                if (anim.rotationY != 0.0) {
+                  clipContent = Transform(
+                    alignment: Alignment.topLeft,
+                    transform: Matrix4.identity()
+                      ..setEntry(3, 2, 0.001)
+                      ..rotateY(anim.rotationY),
+                    child: clipContent,
+                  );
+                }
+
+                if (anim.clipProgress < 1.0) {
+                  clipContent = ClipRect(
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      widthFactor: anim.clipProgress.clamp(0.0, 1.0),
+                      child: clipContent,
+                    ),
                   );
                 }
 
                 return Positioned(
-                  left: pos.dx,
-                  top: pos.dy,
-                  child: charWidget,
+                  left: rect.left,
+                  top: rect.top,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      clipContent,
+                      if (anim.underlineProgress > 0)
+                        Positioned(
+                          left: 0,
+                          top: rect.height,
+                          child: Container(
+                            width: rect.width * anim.underlineProgress.clamp(0.0, 1.0),
+                            height: 2,
+                            color: anim.color ?? effectiveStyle.color,
+                          ),
+                        ),
+                    ],
+                  ),
                 );
               }),
             ],

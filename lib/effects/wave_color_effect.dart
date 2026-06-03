@@ -3,17 +3,17 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
-class ShimmerEffect extends TextEffect {
-  final Color baseColor;
-  final Color highlightColor;
-  final double width;
+class WaveColorEffect extends TextEffect {
+  final Color colorA;
+  final Color colorB;
+  final int waveCount;
 
-  const ShimmerEffect({
+  const WaveColorEffect({
     super.duration = const Duration(milliseconds: 1500),
     super.curve = Curves.easeInOut,
-    this.baseColor = Colors.grey,
-    this.highlightColor = Colors.white,
-    this.width = 0.3,
+    this.colorA = Colors.blue,
+    this.colorB = Colors.purple,
+    this.waveCount = 2,
     super.delayBetweenChars = Duration.zero,
   });
 
@@ -29,12 +29,10 @@ class ShimmerEffect extends TextEffect {
     final curved = applyCurve(progress);
 
     return List.generate(charCount, (index) {
-      final charPos = index / (charCount - 1).clamp(1, charCount);
-      final returnT = sin(curved * pi);
-      final highlightCenter = returnT;
-      final dist = (charPos - highlightCenter).abs();
-      final intensity = (1 - (dist / width)).clamp(0.0, 1.0);
-      final color = Color.lerp(baseColor, highlightColor, intensity)!;
+      final phase = 2 * pi * waveCount * (index / charCount);
+      final wave = sin(curved * 2 * pi - phase);
+      final t = (wave + 1) / 2;
+      final color = Color.lerp(colorA, colorB, t)!;
       return CharacterAnimation(color: color);
     });
   }

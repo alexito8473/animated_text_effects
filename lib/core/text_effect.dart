@@ -31,4 +31,9 @@ abstract class TextEffect {
     final t = (globalProgress - charStart) / charDuration;
     return t.clamp(0.0, 1.0);
   }
+
+  double noise(int index, [int offset = 0]) {
+    final h = (index * 374761393 + offset * 668265263) & 0x7FFFFFFF;
+    return (h % 10000) / 10000.0;
+  }
 }
