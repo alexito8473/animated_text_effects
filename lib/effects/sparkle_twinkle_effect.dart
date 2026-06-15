@@ -3,11 +3,28 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Random sparkle highlights appear on individual characters.
+///
+/// Uses deterministic noise to trigger random sparkle events with
+/// scale, color tint, and blur on selected characters.
 class SparkleTwinkleEffect extends TextEffect {
+  /// Color of the sparkle highlight.
   final Color sparkleColor;
+
+  /// Scale factor applied during a sparkle (1.0 = no change).
   final double sparkleScale;
+
+  /// Gaussian blur applied during the sparkle.
   final double sparkleBlur;
 
+  /// Creates a sparkle/twinkle animation effect.
+  ///
+  /// [duration] — one full sparkle pattern duration.
+  /// [curve] — easing curve for sparkle intensity.
+  /// [sparkleColor] — color of the sparkle highlight.
+  /// [sparkleScale] — scale factor during a sparkle.
+  /// [sparkleBlur] — Gaussian blur during sparkle.
+  /// [delayBetweenChars] — stagger (zero for random sparkles).
   const SparkleTwinkleEffect({
     super.duration = const Duration(milliseconds: 2500),
     super.curve = Curves.easeInOut,
@@ -22,6 +39,7 @@ class SparkleTwinkleEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character random sparkle events using noise.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

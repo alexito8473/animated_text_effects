@@ -3,12 +3,32 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Creates a circular wave ripple that emanates from the text center.
+///
+/// Characters near the center animate first, with the wave propagating
+/// outward, affecting scale, vertical offset, and opacity.
 class RippleEffect extends TextEffect {
+  /// Minimum scale factor at the ripple origin.
   final double scaleMin;
+
+  /// Maximum scale factor at the ripple peak.
   final double scaleMax;
+
+  /// Peak vertical displacement in logical pixels.
   final double height;
+
+  /// Minimum opacity during the ripple (0.0–1.0).
   final double opacityMin;
 
+  /// Creates a circular wave ripple animation from text center.
+  ///
+  /// [duration] — one full ripple propagation duration.
+  /// [curve] — easing curve for the wave.
+  /// [scaleMin] — minimum scale at ripple origin.
+  /// [scaleMax] — maximum scale at ripple peak.
+  /// [height] — peak vertical displacement in pixels.
+  /// [opacityMin] — minimum opacity during ripple.
+  /// [delayBetweenChars] — stagger (zero — propagation is distance-based).
   const RippleEffect({
     super.duration = const Duration(milliseconds: 1200),
     super.curve = Curves.easeOut,
@@ -24,6 +44,7 @@ class RippleEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character wave based on distance from text center.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

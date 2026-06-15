@@ -3,11 +3,28 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Sweeps a background highlight color behind each character.
+///
+/// Characters are highlighted sequentially with the given [highlightColor],
+/// fading from [opacityFrom] to [opacityTo] for a marker-like effect.
 class HighlightEffect extends TextEffect {
+  /// Background color used for the highlight.
   final Color highlightColor;
+
+  /// Starting opacity of the highlight.
   final double opacityFrom;
+
+  /// Peak opacity of the highlight.
   final double opacityTo;
 
+  /// Creates a highlight sweep animation.
+  ///
+  /// [duration] — animation cycle duration per character.
+  /// [curve] — easing curve for the highlight.
+  /// [highlightColor] — background color for the highlight.
+  /// [opacityFrom] — starting highlight opacity.
+  /// [opacityTo] — peak highlight opacity.
+  /// [delayBetweenChars] — stagger delay between characters.
   const HighlightEffect({
     super.duration = const Duration(milliseconds: 800),
     super.curve = Curves.easeInOut,
@@ -17,6 +34,7 @@ class HighlightEffect extends TextEffect {
     super.delayBetweenChars = const Duration(milliseconds: 40),
   });
 
+  /// Generates per-character background color sweeps.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

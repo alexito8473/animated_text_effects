@@ -3,11 +3,28 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Sweeps a bright highlight band across the text.
+///
+/// Characters transition from [baseColor] to [highlightColor] as the band
+/// passes, creating a metallic shimmer or loading effect.
 class ShimmerEffect extends TextEffect {
+  /// Default color of characters outside the highlight band.
   final Color baseColor;
+
+  /// Bright color of the sweeping highlight.
   final Color highlightColor;
+
+  /// Width of the highlight band as a fraction of the text (0.0–1.0).
   final double width;
 
+  /// Creates a shimmer highlight sweep animation.
+  ///
+  /// [duration] — one full shimmer sweep duration.
+  /// [curve] — easing curve for the sweep.
+  /// [baseColor] — default color outside the highlight band.
+  /// [highlightColor] — bright highlight band color.
+  /// [width] — highlight band width as fraction (0–1).
+  /// [delayBetweenChars] — stagger (zero for smooth sweep).
   const ShimmerEffect({
     super.duration = const Duration(milliseconds: 1500),
     super.curve = Curves.easeInOut,
@@ -22,6 +39,7 @@ class ShimmerEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character color lerp from highlight band position.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

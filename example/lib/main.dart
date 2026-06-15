@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:animated_text_effects/animated_text_effects.dart';
 import 'interactive_demo.dart';
 import 'counter_interactive_demo.dart';
+import 'sequence_interactive_demo.dart';
+import 'comprehensive_demo.dart';
+import 'comprehensive_counters_demo.dart';
 
 void main() {
   runApp(const MyApp());
@@ -24,14 +27,30 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class DemoScreen extends StatelessWidget {
+class DemoScreen extends StatefulWidget {
   const DemoScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
-    final controller = TextEffectController();
-    controller.repeat(reverse: true);
+  State<DemoScreen> createState() => _DemoScreenState();
+}
 
+class _DemoScreenState extends State<DemoScreen> {
+  late final TextEffectController controller;
+
+  @override
+  void initState() {
+    super.initState();
+    controller = TextEffectController()..repeat(reverse: true);
+  }
+
+  @override
+  void dispose() {
+    controller.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Animated Text Effects'),
@@ -51,6 +70,30 @@ class DemoScreen extends StatelessWidget {
             ),
             icon: const Icon(Icons.format_list_numbered),
             label: const Text('Counters'),
+          ),
+          TextButton.icon(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const SequenceInteractiveDemo()),
+            ),
+            icon: const Icon(Icons.animation),
+            label: const Text('Sequence'),
+          ),
+          TextButton.icon(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ComprehensiveDemo()),
+            ),
+            icon: const Icon(Icons.dashboard),
+            label: const Text('Comprehensive'),
+          ),
+          TextButton.icon(
+            onPressed: () => Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const ComprehensiveCountersDemo()),
+            ),
+            icon: const Icon(Icons.bar_chart),
+            label: const Text('Cmp Counters'),
           ),
         ],
       ),
@@ -343,6 +386,80 @@ class DemoScreen extends StatelessWidget {
             effects: const [GlitchSplitEffect()],
             repeat: true,
             style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, fontFamily: 'monospace'),
+          ),
+          const SizedBox(height: 32),
+          _section('Scramble — una vez'),
+          AnimatedText(
+            'Descifrado',
+            effects: const [ScrambleEffect()],
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold, fontFamily: 'monospace'),
+          ),
+          const SizedBox(height: 32),
+          _section('PopIn — una vez'),
+          AnimatedText(
+            'Pop In!',
+            effects: const [PopInEffect()],
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('Shake — loop infinito'),
+          AnimatedText(
+            'Temblor',
+            effects: const [ShakeEffect()],
+            repeat: true,
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('FlagWave — loop infinito'),
+          AnimatedText(
+            'Bandera ondeando',
+            effects: const [FlagWaveEffect()],
+            repeat: true,
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('RandomReveal — una vez'),
+          AnimatedText(
+            'Orden aleatorio',
+            effects: const [RandomRevealEffect()],
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('Tracking — loop infinito'),
+          AnimatedText(
+            'Espaciado variable',
+            effects: const [TrackingEffect()],
+            repeat: true,
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('GlowReveal — una vez'),
+          AnimatedText(
+            'Brillo cinematográfico',
+            effects: const [GlowRevealEffect()],
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('KineticType — loop infinito'),
+          AnimatedText(
+            'Flotación cinética',
+            effects: const [KineticTypeEffect()],
+            repeat: true,
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('SplitReveal — una vez'),
+          AnimatedText(
+            'Dividir y revelar',
+            effects: const [SplitRevealEffect()],
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+          ),
+          const SizedBox(height: 32),
+          _section('InkDrops — una vez'),
+          AnimatedText(
+            'Manchas de tinta',
+            effects: const [InkDropsEffect()],
+            style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
           ),
           const SizedBox(height: 32),
           _section('AnimatedCounter — entero'),

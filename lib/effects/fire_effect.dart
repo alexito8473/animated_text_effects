@@ -3,11 +3,28 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Simulates flickering flames on each character.
+///
+/// Characters flicker with random orange/red/yellow colors, scale, jitter,
+/// and blur using deterministic noise for a fire-like appearance.
 class FireEffect extends TextEffect {
+  /// Maximum horizontal/vertical jitter displacement in pixels.
   final double jitter;
+
+  /// Gaussian blur applied to the flame effect.
   final double blurSigma;
+
+  /// Maximum upward scale factor during flicker peaks.
   final double maxScale;
 
+  /// Creates a fire simulation animation.
+  ///
+  /// [duration] — one full flicker cycle duration.
+  /// [curve] — easing (linear recommended for natural flicker).
+  /// [jitter] — max horizontal/vertical jitter in pixels.
+  /// [blurSigma] — Gaussian blur for flame softness.
+  /// [maxScale] — maximum upward scale during flicker peaks.
+  /// [delayBetweenChars] — stagger (zero for simultaneous flicker).
   const FireEffect({
     super.duration = const Duration(milliseconds: 1500),
     super.curve = Curves.linear,
@@ -22,6 +39,7 @@ class FireEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character fire flicker with noise-based color and jitter.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

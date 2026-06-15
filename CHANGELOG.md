@@ -1,3 +1,34 @@
+## 0.0.4
+
+- **5 new effects**: Tracking, Glow Reveal, Kinetic Type, Split Reveal, Ink Drops
+- **New**: `AnimatedTextSequence` — cycle through a list of texts with individual effects, transition animations, and configurable display/transition durations
+- **New**: `SequenceText` — typed text item with per-text effects and optional gap/separator support
+- **New**: `AnimatedRichText` — mix static and animated `TextSegment`s inline within a single widget
+- **New**: `TextSegment.static` / `TextSegment.animated` — fine-grained segment control
+- **New**: Interactive Sequence demo (`SequenceInteractiveDemo`) with per-text effect selection and transition picker
+- **New**: Comprehensive demo (`ComprehensiveDemo`) — 3-tab view (Static Text, Sequence, Mixed) with gap support, color, curve, and font size controls
+- **New**: Comprehensive counters demo (`ComprehensiveCountersDemo`) — 3-tab view (Single, Dashboard, Mixed) with inline prefix/suffix text mixing
+- **New**: `fromCenter` parameter on `TrackingEffect` — controls whether spacing expands from center or rightward
+- **New**: `seed` parameter on `InkDropsEffect` — deterministic drop placement
+- **Fixes**: Counter odometer digit width adjusted from 28→42 to prevent character clipping
+- **Improvements**: README updated with all new effects, sequence widgets API docs, and comprehensive demo descriptions
+- **Tests**: 314 tests (all pass), covering 45 effects + all counters + sequence widgets
+
+## 0.0.3
+
+- **New**: `example/main.dart` — complete API reference with 40 effects, composition rules, controllers, counters, and widget examples (pub.dev example score)
+- **Fixes**: All 14 failing tests corrected (GlowEffect, PulseEffect, SpinEffect, WiggleEffect, ProgressTextEffect, WaveColorEffect, ElasticEffect test, GradientEffect test, AnimatedText test, etc.)
+- **Fixes**: `TextEffect.applyCurve` now clamps input before curve transform (prevents assertion on out-of-range values)
+- **Improvements**: `example/main.dart` uses raw `r'''` strings for safe `$` symbol display in currency example
+
+## 0.0.2
+
+- **5 new effects**: Scramble, Pop In, Shake, Flag Wave, Random Reveal
+- **New**: `character` field on `CharacterAnimation` for per-character text override
+- **Fixes**: GlowEffect, PulseEffect, SpinEffect, WiggleEffect, ProgressTextEffect, WaveColorEffect now properly return identity at both extremes
+- **Fixes**: `TextEffect.applyCurve` clamps input before curve transform to prevent assertion errors
+- **Tests**: 289 tests (all pass), up from 48 in 0.0.1
+
 ## 0.0.1
 
 Initial release.

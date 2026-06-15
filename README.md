@@ -1,6 +1,6 @@
 # animated_text_effects
 
-A Flutter package for text with **35 composable animation effects** and **4 animated counter widgets**. Combine effects freely, control playback, and persist state across scroll off-screen.
+A Flutter package for text with **45 composable animation effects** and **4 animated counter widgets**. Combine effects freely, control playback, and persist state across scroll off-screen.
 
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.3%2B-blue" alt="Flutter">
@@ -12,12 +12,13 @@ A Flutter package for text with **35 composable animation effects** and **4 anim
 
 ## ✨ Features
 
-- **35 effects** — fade, wave, typewriter, fire, smoke, matrix rain, glitch, and more
+- **45 effects** — fade, wave, typewriter, fire, smoke, matrix rain, glitch, scramble, shake, tracking, glow reveal, kinetic type, split reveal, ink drops, and more
 - **Composable** — apply multiple effects simultaneously (opacity multiplies, translation sums, last color wins)
 - **Loop modes** — forward, ping-pong, or finite repeat counts
 - **External controller** — `TextEffectController` for play/pause/stop/seek
 - **Scroll persistence** — animations survive scrolling off-screen via `keepAlive` (default `true`)
 - **Counter widgets** — `AnimatedCounter`, `AnimatedPercentage`, `AnimatedCurrency`, `AnimatedStatCard`, `RollingDigitCounter`
+- **Sequence widgets** — `AnimatedTextSequence` for sequential multi-text playback, `AnimatedRichText` for mixing static & animated text inline
 - **Interactive demos** — included in example app with real-time parameter controls
 
 ## 📋 Effects
@@ -59,6 +60,16 @@ A Flutter package for text with **35 composable animation effects** and **4 anim
 | 33 | **Sparkle Twinkle** | `SparkleTwinkleEffect` | Random sparkle highlights |
 | 34 | **Matrix Rain** | `MatrixRainEffect` | Green rain characters falling |
 | 35 | **Glitch Split** | `GlitchSplitEffect` | Horizontal split with offset jitter |
+| 36 | **Scramble** | `ScrambleEffect` | Characters unscramble from random chars via `character` override |
+| 37 | **Pop In** | `PopInEffect` | Scale overshoot entrance (peak > 1.0, settles at 1.0) |
+| 38 | **Shake** | `ShakeEffect` | Earthquake-style jitter with decreasing intensity |
+| 39 | **Flag Wave** | `FlagWaveEffect` | 3D rotationY sinusoidal wave (like a waving flag) |
+| 40 | **Random Reveal** | `RandomRevealEffect` | Characters reveal in random order via noise threshold |
+| 41 | **Tracking** | `TrackingEffect` | Letter-spacing expansion from center or rightward |
+| 42 | **Glow Reveal** | `GlowRevealEffect` | Cinematic bloom-to-sharp (blur + scale + opacity) |
+| 43 | **Kinetic Type** | `KineticTypeEffect` | Continuous wave bob/floating (Apple keynote style) |
+| 44 | **Split Reveal** | `SplitRevealEffect` | Characters split from center (left half from left, right from right) |
+| 45 | **Ink Drops** | `InkDropsEffect` | Ink splatter reveal outward from random drop points |
 
 ## 📟 Counter Widgets
 
@@ -70,16 +81,60 @@ A Flutter package for text with **35 composable animation effects** and **4 anim
 | `AnimatedStatCard` | Material card with icon, label, and `AnimatedCounter` |
 | `RollingDigitCounter` | Digit-box style counter with per-character boxes |
 
-## 🚀 Getting started
+## 📦 Sequence widgets
 
-### Installation
+### AnimatedTextSequence — sequential multi-text playback
 
-```yaml
-dependencies:
-  animated_text_effects:
-    git:
-      url: https://github.com/your-username/animated_text_effects
+Cycle through a list of texts with individual effects, transition animations, and configurable display/transition durations.
+
+```dart
+AnimatedTextSequence(
+  texts: [
+    SequenceText('Hello', effects: const [FadeEffect()]),
+    SequenceText('World', effects: const [WaveEffect()]),
+    SequenceText('!', effects: const [BounceEffect()]),
+  ],
+  repeat: true,
+  displayDuration: Duration(seconds: 3),
+  transitionDuration: Duration(milliseconds: 600),
+  transitionEffect: FadeEffect(),
+  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+)
 ```
+
+### Gap between texts
+
+Insert static separator text between sequence items using `SequenceText` with no effects:
+
+```dart
+AnimatedTextSequence(
+  texts: [
+    SequenceText('Hello', effects: const [FadeEffect()]),
+    SequenceText(' • ', effects: const []),  // static gap
+    SequenceText('World', effects: const [FadeEffect()]),
+  ],
+  repeat: true,
+  style: TextStyle(fontSize: 28),
+)
+```
+
+### AnimatedRichText — inline static + animated segments
+
+Mix static text with animated segments inside a single widget:
+
+```dart
+AnimatedRichText(
+  segments: [
+    const TextSegment.static('Static prefix '),
+    TextSegment.animated('Animated!', effects: const [FadeEffect(), WaveEffect()]),
+    const TextSegment.static(' Static suffix'),
+  ],
+  repeat: true,
+  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+)
+```
+
+## 🚀 Getting started
 
 ### Import
 
@@ -540,6 +595,76 @@ MatrixRainEffect({
 })
 ```
 
+### ScrambleEffect
+
+```dart
+ScrambleEffect({
+  Duration duration = 1000ms,
+  Curve curve = Curves.easeInOut,
+  Duration delayBetweenChars = 60ms,
+  String charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
+  int seed = 42,
+})
+```
+
+Characters temporarily show random chars from `charset` (via `character` override) at progress 0, resolving to the actual text at progress 1. The `seed` controls the deterministic scramble pattern.
+
+### PopInEffect
+
+```dart
+PopInEffect({
+  Duration duration = 1000ms,
+  Curve curve = Curves.easeOutBack,
+  Duration delayBetweenChars = 60ms,
+  double scaleFrom = 0.0,
+  double scalePeak = 1.2,
+  double opacityFrom = 0.0,
+})
+```
+
+Characters scale up from `scaleFrom` past 1.0 to `scalePeak` before settling at 1.0, creating a playful overshoot entrance.
+
+### ShakeEffect
+
+```dart
+ShakeEffect({
+  Duration duration = 800ms,
+  Curve curve = Curves.easeOut,
+  double intensity = 4.0,
+  double rotationAmplitude = 0.1,
+})
+```
+
+Each character jitters with decreasing intensity towards progress 1, simulating an earthquake or vibration effect.
+
+### FlagWaveEffect
+
+```dart
+FlagWaveEffect({
+  Duration duration = 1500ms,
+  Curve curve = Curves.easeInOut,
+  double amplitude = 0.3,
+  int waveCount = 2,
+})
+```
+
+Applies a 3D rotationY wave across characters, creating a flag-waving effect. Characters at the same index have the same rotation for a cohesive wave.
+
+### RandomRevealEffect
+
+```dart
+RandomRevealEffect({
+  Duration duration = 1500ms,
+  Curve curve = Curves.easeInOut,
+  Duration delayBetweenChars = Duration.zero,
+  double opacityFrom = 0.0,
+  double scaleFrom = 0.5,
+  int seed = 42,
+})
+```
+
+Characters reveal in a random order (determined by `seed`) instead of left-to-right, each fading/scaling in independently based on noise threshold.
+
 ### GlitchSplitEffect
 
 ```dart
@@ -549,6 +674,77 @@ GlitchSplitEffect({
   double maxOffset = 10.0,
 })
 ```
+
+### TrackingEffect
+
+```dart
+TrackingEffect({
+  Duration duration = 800ms,
+  Curve curve = Curves.easeOut,
+  Duration delayBetweenChars = Duration.zero,
+  double spacing = 30.0,
+  bool fromCenter = true,
+})
+```
+
+Characters spread apart horizontally. When `fromCenter` is `true` (default), text expands outward from the center; when `false`, characters shift rightward linearly.
+
+### GlowRevealEffect
+
+```dart
+GlowRevealEffect({
+  Duration duration = 1200ms,
+  Curve curve = Curves.easeOut,
+  Duration delayBetweenChars = 30ms,
+  double blurSigmaFrom = 10.0,
+  double scaleFrom = 1.4,
+})
+```
+
+Each character blooms from a blurred, slightly enlarged state to sharp and fully opaque. A subtle pulse adds cinematic depth.
+
+### KineticTypeEffect
+
+```dart
+KineticTypeEffect({
+  Duration duration = 2000ms,
+  Curve curve = Curves.linear,
+  Duration delayBetweenChars = Duration.zero,
+  double amplitude = 4.0,
+  double waveCount = 2.0,
+  double rotationAmplitude = 0.03,
+})
+```
+
+A continuous wave of vertical bob + slight rotation + scale — reminiscent of Apple keynote kinetic typography. All characters move simultaneously for a fluid, organic feel.
+
+### SplitRevealEffect
+
+```dart
+SplitRevealEffect({
+  Duration duration = 700ms,
+  Curve curve = Curves.easeOut,
+  Duration delayBetweenChars = 20ms,
+  double distance = 80.0,
+})
+```
+
+Characters on the left half slide in from the left, characters on the right half slide in from the right, and the center character appears in place. Creates a satisfying symmetrical reveal.
+
+### InkDropsEffect
+
+```dart
+InkDropsEffect({
+  Duration duration = 1000ms,
+  Curve curve = Curves.easeOut,
+  Duration delayBetweenChars = Duration.zero,
+  int dropCount = 3,
+  double spreadDistance = 100.0,
+  int seed = 42,
+})
+```
+
+Characters reveal outward from random ink drop points. Each character scales up from 0.3, fades in, and sharpens as the ink spreads. The `seed` parameter controls deterministic drop placement.
 
 ## 📟 Counter widgets reference
 
@@ -686,6 +882,54 @@ RollingDigitCounter({
 | `blurSigma`, `rotation`, `rotationX`, `rotationY`, `underlineProgress` | **Summed** across effects |
 | `clipProgress` | **Multiplied** across effects |
 
+## 🧩 Sequence widgets API
+
+### AnimatedTextSequence
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `texts` | `List<SequenceText>` | — | Ordered list of text items to cycle through |
+| `controller` | `TextEffectController?` | `null` | External playback control |
+| `style` | `TextStyle?` | inherits | Text styling (applied to all texts) |
+| `autoplay` | `bool` | `true` | Start animation automatically |
+| `repeat` | `bool` | `true` | Loop infinitely through the sequence |
+| `displayDuration` | `Duration` | `3s` | How long each text is displayed |
+| `transitionDuration` | `Duration` | `500ms` | Duration of the cross-fade between texts |
+| `transitionEffect` | `TextEffect?` | `null` | Effect applied during transitions (null = plain cross-fade) |
+| `textAlign` | `TextAlign` | `start` | Text alignment |
+| `textDirection` | `TextDirection` | `ltr` | Text direction |
+| `keepAlive` | `bool` | `true` | Persist animation in scroll views |
+
+### SequenceText
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `text` | `String` | — | Text content for this item |
+| `effects` | `List<TextEffect>` | `[]` | Effects to apply when this text is displayed |
+| `style` | `TextStyle?` | `null` | Per-item text style override |
+| `segments` | `List<TextSegment>?` | `null` | Fine-grained segment control (for mixed static/animated within one item) |
+
+### AnimatedRichText
+
+| Parameter | Type | Default | Description |
+|---|---|---|---|
+| `segments` | `List<TextSegment>` | — | Ordered list of static or animated text segments |
+| `controller` | `TextEffectController?` | `null` | External playback control |
+| `style` | `TextStyle?` | inherits | Base text styling |
+| `autoplay` | `bool` | `true` | Start animation automatically |
+| `repeat` | `bool` | `false` | Loop infinitely |
+| `reverse` | `bool` | `false` | Ping-pong (requires `repeat: true`) |
+| `textAlign` | `TextAlign` | `start` | Text alignment |
+| `textDirection` | `TextDirection` | `ltr` | Text direction |
+| `keepAlive` | `bool` | `true` | Persist animation in scroll views |
+
+### TextSegment
+
+| Constructor | Parameters | Description |
+|---|---|---|
+| `TextSegment.static(text)` | `text` | Non-animated text segment |
+| `TextSegment.animated(text, {effects})` | `text`, `effects` | Animated text segment with optional effects |
+
 ## 📐 Effect contract
 
 All effects guarantee `f(0) == f(1)` — at `progress=0` and `progress=1` every character returns to its base state. This ensures seamless looping and predictable end states.
@@ -740,8 +984,11 @@ class _MyWidgetState extends State<MyWidget> with SingleTickerProviderStateMixin
 
 The example app includes two interactive demos reachable from the AppBar:
 
-- **Text** — multi-effect checkboxes with per-effect parameter sliders (all 35 effects)
+- **Text** — multi-effect checkboxes with per-effect parameter sliders (all 45 effects)
 - **Counters** — all 5 counter types with global controls (value, decimals, duration, curve, color, scale pulse) and a reset button that recreates all widgets from scratch
+- **Sequence** — interactive `AnimatedTextSequence` with per-text effect selection and transition effect picker
+- **Comprehensive** — tabbed demo (Static Text, Sequence, Mixed) with gap support, per-text effects, color, curve, and font size controls
+- **Cmp Counters** — tabbed counter demo (Single, Dashboard, Mixed) with inline prefix/suffix text mixing
 
 ```bash
 cd example
@@ -758,8 +1005,12 @@ lib/
 │   ├── text_effect_controller.dart  # Playback controller with attach/detach
 │   ├── character_animation.dart  # Per-character animation data
 │   ├── animated_text.dart        # Main AnimatedText widget
+│   ├── text_segment.dart         # Static or animated segment for AnimatedRichText
+│   ├── sequence_text.dart        # Text item with effects for AnimatedTextSequence
+│   ├── animated_rich_text.dart   # Inline static + animated text segments
+│   ├── animated_text_sequence.dart  # Sequential multi-text playback with transitions
 │   └── animated_counter.dart     # AnimatedCounter base widget
-├── effects/                      # 35 effect implementations
+├── effects/                      # 45 effect implementations
 │   ├── fade_effect.dart
 │   ├── gradient_effect.dart
 │   ├── wave_effect.dart
@@ -794,6 +1045,16 @@ lib/
 │   ├── melt_drip_effect.dart
 │   ├── sparkle_twinkle_effect.dart
 │   ├── matrix_rain_effect.dart
+│   ├── scramble_effect.dart
+│   ├── pop_in_effect.dart
+│   ├── shake_effect.dart
+│   ├── flag_wave_effect.dart
+│   ├── tracking_effect.dart
+│   ├── glow_reveal_effect.dart
+│   ├── kinetic_type_effect.dart
+│   ├── split_reveal_effect.dart
+│   ├── ink_drops_effect.dart
+│   └── random_reveal_effect.dart
 │   └── glitch_split_effect.dart
 └── counters/                     # Counter widgets
     ├── animated_percentage.dart

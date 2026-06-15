@@ -1,7 +1,21 @@
+// Barrel file exporting all public APIs of the animated_text_effects package.
+//
+// Re-exports core widgets (AnimatedText, AnimatedRichText,
+// AnimatedTextSequence, AnimatedCounter), base classes (TextEffect,
+// CharacterAnimation, TextEffectController),
+// text building blocks (TextSegment, SequenceText),
+// counter widgets (AnimatedPercentage, AnimatedCurrency,
+// AnimatedStatCard, RollingDigitCounter),
+// and all 45 built-in TextEffect implementations.
 export 'core/animated_text.dart';
 export 'core/text_effect.dart';
 export 'core/text_effect_controller.dart';
 export 'core/character_animation.dart';
+export 'core/text_renderer.dart';
+export 'core/text_segment.dart';
+export 'core/sequence_text.dart';
+export 'core/animated_rich_text.dart';
+export 'core/animated_text_sequence.dart';
 
 export 'effects/fade_effect.dart';
 export 'effects/gradient_effect.dart';
@@ -43,3 +57,14 @@ export 'effects/melt_drip_effect.dart';
 export 'effects/sparkle_twinkle_effect.dart';
 export 'effects/matrix_rain_effect.dart';
 export 'effects/glitch_split_effect.dart';
+
+export 'effects/scramble_effect.dart';
+export 'effects/pop_in_effect.dart';
+export 'effects/shake_effect.dart';
+export 'effects/flag_wave_effect.dart';
+export 'effects/random_reveal_effect.dart';
+export 'effects/tracking_effect.dart';
+export 'effects/glow_reveal_effect.dart';
+export 'effects/kinetic_type_effect.dart';
+export 'effects/split_reveal_effect.dart';
+export 'effects/ink_drops_effect.dart';

@@ -2,11 +2,28 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// A scanning line sweeps across the text revealing characters.
+///
+/// Characters are revealed via clip as the scan passes, with a bright
+/// color highlight and trailing glow effect.
 class ScannerEffect extends TextEffect {
+  /// Color of the scanning highlight line.
   final Color scanColor;
+
+  /// Width of the bright scan line as a fraction of text width.
   final double scanWidth;
+
+  /// Width of the trailing glow as a fraction of text width.
   final double glowWidth;
 
+  /// Creates a scanner-style reveal animation.
+  ///
+  /// [duration] — one full scan cycle duration.
+  /// [curve] — easing curve for the scan.
+  /// [scanColor] — color of the bright scan highlight.
+  /// [scanWidth] — bright scan band width as fraction of text.
+  /// [glowWidth] — trailing glow width as fraction of text.
+  /// [delayBetweenChars] — stagger (zero for smooth scan sweep).
   const ScannerEffect({
     super.duration = const Duration(milliseconds: 1200),
     super.curve = Curves.easeInOut,
@@ -21,6 +38,7 @@ class ScannerEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character clip reveal and color highlight from scan head.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

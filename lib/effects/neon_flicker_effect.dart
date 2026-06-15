@@ -3,12 +3,32 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Simulates a flickering neon sign with random glow and blur.
+///
+/// Uses multi-frequency noise to create irregular flicker patterns,
+/// alternating between [baseColor] and [glowColor] with blur.
 class NeonFlickerEffect extends TextEffect {
+  /// Base (dim) color of the neon text.
   final Color baseColor;
+
+  /// Bright glow color during flicker peaks.
   final Color glowColor;
+
+  /// Gaussian blur sigma applied when glowing.
   final double blurSigma;
+
+  /// Seed for the deterministic flicker pattern.
   final int flickerSeed;
 
+  /// Creates a neon flicker animation with random timing.
+  ///
+  /// [duration] — one full flicker pattern duration.
+  /// [curve] — easing (linear for instant flicker transitions).
+  /// [baseColor] — dim/base color when not glowing brightly.
+  /// [glowColor] — bright glow color during flicker peaks.
+  /// [blurSigma] — Gaussian blur applied when glowing.
+  /// [flickerSeed] — seed for deterministic flicker pattern.
+  /// [delayBetweenChars] — stagger (zero for varied per-char flicker).
   const NeonFlickerEffect({
     super.duration = const Duration(milliseconds: 2000),
     super.curve = Curves.linear,
@@ -24,6 +44,7 @@ class NeonFlickerEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character flicker using multi-frequency noise.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

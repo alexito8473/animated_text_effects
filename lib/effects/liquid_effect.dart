@@ -3,11 +3,28 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Wavy distortion that stretches characters like liquid.
+///
+/// Each character oscillates in scale (X/Y) and vertical position with
+/// a unique noise-based phase, creating a fluid, wobbly appearance.
 class LiquidEffect extends TextEffect {
+  /// Horizontal stretch amplitude factor.
   final double amplitude;
+
+  /// Oscillation frequency of the liquid wave.
   final double frequency;
+
+  /// Vertical displacement amplitude in logical pixels.
   final double waveHeight;
 
+  /// Creates a liquid/fluid distortion animation.
+  ///
+  /// [duration] — one full oscillation cycle duration.
+  /// [curve] — easing curve for the fluid motion.
+  /// [amplitude] — horizontal stretch amplitude factor.
+  /// [frequency] — oscillation frequency of the wave.
+  /// [waveHeight] — vertical displacement amplitude in pixels.
+  /// [delayBetweenChars] — stagger (zero for simultaneous wave).
   const LiquidEffect({
     super.duration = const Duration(milliseconds: 1500),
     super.curve = Curves.easeInOut,
@@ -22,6 +39,7 @@ class LiquidEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character stretch and vertical offset with noise phase.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

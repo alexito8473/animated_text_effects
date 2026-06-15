@@ -3,10 +3,24 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Random horizontal RGB channel split glitch effect.
+///
+/// Characters randomly offset horizontally with a red/cyan color tint,
+/// simulating a digital video signal split.
 class GlitchSplitEffect extends TextEffect {
+  /// Maximum horizontal split displacement in pixels.
   final double splitAmount;
+
+  /// Probability (0.0–1.0) that a character glitches at any moment.
   final double probability;
 
+  /// Creates a digital glitch split effect.
+  ///
+  /// [duration] — one full glitch cycle duration.
+  /// [curve] — easing (linear for instant glitch transitions).
+  /// [splitAmount] — max horizontal split displacement in pixels.
+  /// [probability] — chance (0–1) any character glitches at a moment.
+  /// [delayBetweenChars] — stagger (zero for random simultaneous glitch).
   const GlitchSplitEffect({
     super.duration = const Duration(milliseconds: 1500),
     super.curve = Curves.linear,
@@ -20,6 +34,7 @@ class GlitchSplitEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character random horizontal offset with color tint.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

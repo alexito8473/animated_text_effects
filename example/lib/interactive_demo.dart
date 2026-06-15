@@ -37,6 +37,16 @@ enum _EffectType {
   sparkleTwinkle,
   matrixRain,
   glitchSplit,
+  scramble,
+  popIn,
+  shake,
+  flagWave,
+  randomReveal,
+  tracking,
+  glowReveal,
+  kineticType,
+  splitReveal,
+  inkDrops,
 }
 
 const _curveOptions = [
@@ -99,6 +109,16 @@ const _effectLabels = {
   _EffectType.sparkleTwinkle: 'Sparkle Twinkle',
   _EffectType.matrixRain: 'Matrix Rain',
   _EffectType.glitchSplit: 'Glitch Split',
+  _EffectType.scramble: 'Scramble',
+  _EffectType.popIn: 'Pop In',
+  _EffectType.shake: 'Shake',
+  _EffectType.flagWave: 'Flag Wave',
+  _EffectType.randomReveal: 'Random Reveal',
+  _EffectType.tracking: 'Tracking',
+  _EffectType.glowReveal: 'Glow Reveal',
+  _EffectType.kineticType: 'Kinetic Type',
+  _EffectType.splitReveal: 'Split Reveal',
+  _EffectType.inkDrops: 'Ink Drops',
 };
 
 class InteractiveDemo extends StatefulWidget {
@@ -241,6 +261,26 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
 
   double _glitchSplitAmount = 4.0;
   double _glitchProbability = 0.3;
+
+  int _scrambleSeed = 42;
+  double _popInScalePeak = 1.3;
+  double _shakeIntensity = 6.0;
+  double _shakeFrequency = 4.0;
+  double _flagWaveAmplitude = 0.4;
+  int _flagWaveCount = 2;
+  int _randomRevealSeed = 42;
+  double _randomRevealOpacityFrom = 0.0;
+  double _trackingSpacing = 30.0;
+  bool _trackingFromCenter = true;
+  double _glowRevealBlurSigmaFrom = 10.0;
+  double _glowRevealScaleFrom = 1.4;
+  double _kineticAmplitude = 4.0;
+  double _kineticWaveCount = 2.0;
+  double _kineticRotationAmplitude = 0.03;
+  double _splitRevealDistance = 80.0;
+  int _inkDropsDropCount = 3;
+  double _inkDropsSpreadDistance = 100.0;
+  int _inkDropsSeed = 42;
 
   @override
   void initState() {
@@ -543,6 +583,77 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
           curve: _curve,
           splitAmount: _glitchSplitAmount,
           probability: _glitchProbability,
+        );
+      case _EffectType.scramble:
+        return ScrambleEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+          seed: _scrambleSeed,
+        );
+      case _EffectType.popIn:
+        return PopInEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+          scalePeak: _popInScalePeak,
+        );
+      case _EffectType.shake:
+        return ShakeEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          intensity: _shakeIntensity,
+          frequency: _shakeFrequency,
+        );
+      case _EffectType.flagWave:
+        return FlagWaveEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          amplitude: _flagWaveAmplitude,
+          waveCount: _flagWaveCount,
+        );
+      case _EffectType.randomReveal:
+        return RandomRevealEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          seed: _randomRevealSeed,
+          opacityFrom: _randomRevealOpacityFrom,
+        );
+      case _EffectType.tracking:
+        return TrackingEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          spacing: _trackingSpacing,
+          fromCenter: _trackingFromCenter,
+        );
+      case _EffectType.glowReveal:
+        return GlowRevealEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          blurSigmaFrom: _glowRevealBlurSigmaFrom,
+          scaleFrom: _glowRevealScaleFrom,
+        );
+      case _EffectType.kineticType:
+        return KineticTypeEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          amplitude: _kineticAmplitude,
+          waveCount: _kineticWaveCount,
+          rotationAmplitude: _kineticRotationAmplitude,
+        );
+      case _EffectType.splitReveal:
+        return SplitRevealEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          distance: _splitRevealDistance,
+        );
+      case _EffectType.inkDrops:
+        return InkDropsEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          dropCount: _inkDropsDropCount,
+          spreadDistance: _inkDropsSpreadDistance,
+          seed: _inkDropsSeed,
         );
     }
   }
@@ -976,6 +1087,75 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
           children: [
             _section('Split Amount'), _slider(value: _glitchSplitAmount, min: 1, max: 20, label: _glitchSplitAmount.toStringAsFixed(1), onChanged: (v) => setState(() => _glitchSplitAmount = v)),
             _section('Probability'), _slider(value: _glitchProbability, min: 0, max: 1, label: _glitchProbability.toStringAsFixed(2), onChanged: (v) => setState(() => _glitchProbability = v)),
+          ],
+        );
+      case _EffectType.scramble:
+        return Column(
+          children: [
+            _section('Seed'), _slider(value: _scrambleSeed.toDouble(), min: 0, max: 100, divisions: 100, label: '$_scrambleSeed', onChanged: (v) => setState(() => _scrambleSeed = v.round())),
+          ],
+        );
+      case _EffectType.popIn:
+        return Column(
+          children: [
+            _section('Scale Peak'), _slider(value: _popInScalePeak, min: 1, max: 2.5, label: _popInScalePeak.toStringAsFixed(2), onChanged: (v) => setState(() => _popInScalePeak = v)),
+          ],
+        );
+      case _EffectType.shake:
+        return Column(
+          children: [
+            _section('Intensity'), _slider(value: _shakeIntensity, min: 1, max: 20, label: _shakeIntensity.toStringAsFixed(1), onChanged: (v) => setState(() => _shakeIntensity = v)),
+            _section('Frequency'), _slider(value: _shakeFrequency, min: 1, max: 10, label: _shakeFrequency.toStringAsFixed(1), onChanged: (v) => setState(() => _shakeFrequency = v)),
+          ],
+        );
+      case _EffectType.flagWave:
+        return Column(
+          children: [
+            _section('Amplitude'), _slider(value: _flagWaveAmplitude, min: 0, max: 1, label: _flagWaveAmplitude.toStringAsFixed(2), onChanged: (v) => setState(() => _flagWaveAmplitude = v)),
+            _section('Wave Count'), _slider(value: _flagWaveCount.toDouble(), min: 1, max: 10, divisions: 9, label: '$_flagWaveCount', onChanged: (v) => setState(() => _flagWaveCount = v.round())),
+          ],
+        );
+      case _EffectType.randomReveal:
+        return Column(
+          children: [
+            _section('Seed'), _slider(value: _randomRevealSeed.toDouble(), min: 0, max: 100, divisions: 100, label: '$_randomRevealSeed', onChanged: (v) => setState(() => _randomRevealSeed = v.round())),
+            _section('Opacity From'), _slider(value: _randomRevealOpacityFrom, min: 0, max: 1, label: _randomRevealOpacityFrom.toStringAsFixed(2), onChanged: (v) => setState(() => _randomRevealOpacityFrom = v)),
+          ],
+        );
+      case _EffectType.tracking:
+        return Column(
+          children: [
+            _section('Spacing'), _slider(value: _trackingSpacing, min: 0, max: 100, label: _trackingSpacing.toStringAsFixed(1), onChanged: (v) => setState(() => _trackingSpacing = v)),
+            SwitchListTile(dense: true, visualDensity: VisualDensity.compact, title: const Text('From Center'), value: _trackingFromCenter, onChanged: (v) => setState(() => _trackingFromCenter = v)),
+          ],
+        );
+      case _EffectType.glowReveal:
+        return Column(
+          children: [
+            _section('Blur From'), _slider(value: _glowRevealBlurSigmaFrom, min: 0, max: 20, label: _glowRevealBlurSigmaFrom.toStringAsFixed(1), onChanged: (v) => setState(() => _glowRevealBlurSigmaFrom = v)),
+            _section('Scale From'), _slider(value: _glowRevealScaleFrom, min: 1, max: 3, label: _glowRevealScaleFrom.toStringAsFixed(2), onChanged: (v) => setState(() => _glowRevealScaleFrom = v)),
+          ],
+        );
+      case _EffectType.kineticType:
+        return Column(
+          children: [
+            _section('Amplitude'), _slider(value: _kineticAmplitude, min: 0, max: 20, label: _kineticAmplitude.toStringAsFixed(1), onChanged: (v) => setState(() => _kineticAmplitude = v)),
+            _section('Wave Count'), _slider(value: _kineticWaveCount, min: 0.5, max: 5, label: _kineticWaveCount.toStringAsFixed(1), onChanged: (v) => setState(() => _kineticWaveCount = v)),
+            _section('Rotation Amp'), _slider(value: _kineticRotationAmplitude, min: 0, max: 0.15, label: _kineticRotationAmplitude.toStringAsFixed(3), onChanged: (v) => setState(() => _kineticRotationAmplitude = v)),
+          ],
+        );
+      case _EffectType.splitReveal:
+        return Column(
+          children: [
+            _section('Distance'), _slider(value: _splitRevealDistance, min: 10, max: 200, label: _splitRevealDistance.toStringAsFixed(1), onChanged: (v) => setState(() => _splitRevealDistance = v)),
+          ],
+        );
+      case _EffectType.inkDrops:
+        return Column(
+          children: [
+            _section('Drop Count'), _slider(value: _inkDropsDropCount.toDouble(), min: 1, max: 10, divisions: 9, label: '$_inkDropsDropCount', onChanged: (v) => setState(() => _inkDropsDropCount = v.round())),
+            _section('Spread Distance'), _slider(value: _inkDropsSpreadDistance, min: 20, max: 300, label: _inkDropsSpreadDistance.toStringAsFixed(1), onChanged: (v) => setState(() => _inkDropsSpreadDistance = v)),
+            _section('Seed'), _slider(value: _inkDropsSeed.toDouble(), min: 0, max: 100, divisions: 100, label: '$_inkDropsSeed', onChanged: (v) => setState(() => _inkDropsSeed = v.round())),
           ],
         );
     }

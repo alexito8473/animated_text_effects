@@ -1,8 +1,10 @@
 name: animated_text_effects
-description: "A Flutter package with 35 composable text animation effects and 5 animated counter widgets."
-version: 0.0.1
+description: "A Flutter package with 45 composable text animation effects, sequence widgets, and 4 animated counter widgets."
+version: 0.0.4
 homepage: https://github.com/alexito8473/animated_text_effects
 repository: https://github.com/alexito8473/animated_text_effects
+funding:
+  - https://github.com/sponsors/alexito8473
 
 environment:
   sdk: ^3.11.5

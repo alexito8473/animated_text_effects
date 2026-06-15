@@ -3,11 +3,28 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Simulates VHS tape distortion with scan lines, jitter, and color shift.
+///
+/// Uses multi-frequency noise to randomly trigger horizontal jitter,
+/// color offset, blur, and opacity dips on individual characters.
 class VHSGlitchEffect extends TextEffect {
+  /// Maximum horizontal jitter displacement in pixels.
   final double jitter;
+
+  /// Horizontal color channel offset in pixels during glitch.
   final double colorOffset;
+
+  /// Maximum Gaussian blur during glitch events.
   final double maxBlur;
 
+  /// Creates a VHS-style glitch distortion effect.
+  ///
+  /// [duration] — one full glitch pattern duration.
+  /// [curve] — easing (linear for instant glitch transitions).
+  /// [jitter] — max horizontal jitter displacement in pixels.
+  /// [colorOffset] — horizontal color channel offset during glitch.
+  /// [maxBlur] — maximum Gaussian blur during glitch events.
+  /// [delayBetweenChars] — stagger (zero for random glitch).
   const VHSGlitchEffect({
     super.duration = const Duration(milliseconds: 2000),
     super.curve = Curves.linear,
@@ -22,6 +39,7 @@ class VHSGlitchEffect extends TextEffect {
     return duration;
   }
 
+  /// Generates per-character glitch with jitter, color shift, and blur.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];

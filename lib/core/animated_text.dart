@@ -1,25 +1,79 @@
-import 'dart:ui' as ui;
-
 import 'package:flutter/material.dart';
 import 'text_effect.dart';
 import 'text_effect_controller.dart';
 import 'character_animation.dart';
+import 'text_renderer.dart';
 
+/// Displays animated text with one or more composable [TextEffect]s.
+///
+/// Each character is individually rendered and animated by combining the
+/// output of all registered effects via [CharacterAnimation.combine].
+///
+/// Supports external playback control via [TextEffectController] and
+/// preserves animation state when scrolled off-screen via [keepAlive].
+///
+/// ```dart
+/// AnimatedText(
+///   'Hello World',
+///   effects: [FadeEffect(), WaveEffect()],
+///   style: TextStyle(fontSize: 32),
+/// )
+/// ```
 class AnimatedText extends StatefulWidget {
+  /// The text string to animate character by character.
   final String text;
+
+  /// List of animation effects applied and composed together.
   final List<TextEffect> effects;
+
+  /// Optional external controller for shared playback orchestration.
   final TextEffectController? controller;
+
+  /// Text style applied to every character. Defaults to [DefaultTextStyle].
   final TextStyle? style;
+
+  /// Alignment of the text within its bounds.
   final TextAlign textAlign;
+
+  /// Whether playback begins automatically on mount.
   final bool autoplay;
+
+  /// Whether the animation loops indefinitely.
   final bool repeat;
+
+  /// Whether repeated animations play forwards then backwards.
   final bool reverse;
+
+  /// Text direction for layout (affects alignment and box selection).
   final TextDirection textDirection;
+
+  /// Optional strut style for consistent line height.
   final StrutStyle? strutStyle;
+
+  /// Optional text height behavior override.
   final TextHeightBehavior? textHeightBehavior;
+
+  /// How text width is computed relative to the parent.
   final TextWidthBasis textWidthBasis;
+
+  /// When true (default), animation state survives scroll-off in a lazy list.
   final bool keepAlive;
 
+  /// Creates an [AnimatedText] widget that animates the given [text].
+  ///
+  /// [text] — the string to animate (required, positional).
+  /// [effects] — list of [TextEffect]s composed onto the text.
+  /// [controller] — optional external [TextEffectController].
+  /// [style] — text style (falls back to [DefaultTextStyle]).
+  /// [textAlign] — horizontal text alignment.
+  /// [autoplay] — whether playback starts on mount.
+  /// [repeat] — whether the animation loops indefinitely.
+  /// [reverse] — whether looping plays forward then backward.
+  /// [textDirection] — layout direction (affects alignment).
+  /// [strutStyle] — optional strut for consistent line height.
+  /// [textHeightBehavior] — optional height behavior override.
+  /// [textWidthBasis] — how text width is computed.
+  /// [keepAlive] — preserves animation in scroll-off (lazy list).
   const AnimatedText(
     this.text, {
     super.key,
@@ -42,7 +96,7 @@ class AnimatedText extends StatefulWidget {
 }
 
 class _AnimatedTextState extends State<AnimatedText>
-    with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
+    with TickerProviderStateMixin, AutomaticKeepAliveClientMixin {
 
   @override
   bool get wantKeepAlive => widget.keepAlive;
@@ -168,159 +222,15 @@ class _AnimatedTextState extends State<AnimatedText>
     super.build(context);
     final effectiveStyle = widget.style ?? DefaultTextStyle.of(context).style;
     final animations = _computeAnimations();
-    return LayoutBuilder(
-      builder: (context, constraints) {
-        final maxWidth =
-            constraints.hasBoundedWidth ? constraints.maxWidth : double.infinity;
-
-        final tp = TextPainter(
-          text: TextSpan(text: widget.text, style: effectiveStyle),
-          textDirection: widget.textDirection,
-          textAlign: widget.textAlign,
-          strutStyle: widget.strutStyle,
-          textHeightBehavior: widget.textHeightBehavior,
-          textWidthBasis: widget.textWidthBasis,
-        )..layout(maxWidth: maxWidth);
-
-        final charRects = <int, Rect>{};
-        for (int i = 0; i < widget.text.length; i++) {
-          final boxes = tp.getBoxesForSelection(
-            TextSelection(baseOffset: i, extentOffset: i + 1),
-          );
-          if (boxes.isNotEmpty) {
-            final b = boxes.first;
-            charRects[i] = b.toRect();
-          }
-        }
-
-        return SizedBox(
-          width: tp.width,
-          height: tp.height,
-          child: Stack(
-            clipBehavior: Clip.none,
-            children: [
-              ...List.generate(widget.text.length, (i) {
-                final char = widget.text[i];
-                if (char == ' ' || char == '\n' || char == '\t') {
-                  return const SizedBox.shrink();
-                }
-
-                final anim = animations[i];
-                final rect = charRects[i];
-                if (rect == null) return const SizedBox.shrink();
-
-                Widget charWidget = Text(
-                  char,
-                  style: effectiveStyle.copyWith(
-                    color: anim.color ?? effectiveStyle.color,
-                  ),
-                  textDirection: widget.textDirection,
-                );
-
-                if (anim.backgroundColor != null) {
-                  charWidget = Container(
-                    color: anim.backgroundColor,
-                    child: charWidget,
-                  );
-                }
-
-                Widget clipContent = charWidget;
-
-                if (anim.blurSigma > 0) {
-                  clipContent = ImageFiltered(
-                    imageFilter: ui.ImageFilter.blur(
-                      sigmaX: anim.blurSigma,
-                      sigmaY: anim.blurSigma,
-                    ),
-                    child: clipContent,
-                  );
-                }
-
-                if (anim.opacity < 1.0) {
-                  clipContent = Opacity(
-                    opacity: anim.opacity,
-                    child: clipContent,
-                  );
-                }
-
-                if (anim.translation != Offset.zero) {
-                  clipContent = Transform.translate(
-                    offset: anim.translation,
-                    child: clipContent,
-                  );
-                }
-                final sx = anim.scale * anim.scaleX;
-                final sy = anim.scale * anim.scaleY;
-                if (sx != 1.0 || sy != 1.0) {
-                  clipContent = Transform(
-                    alignment: Alignment.topLeft,
-                    transform: Matrix4.diagonal3Values(sx, sy, 1),
-                    child: clipContent,
-                  );
-                }
-
-                if (anim.rotation != 0.0) {
-                  clipContent = Transform.rotate(
-                    angle: anim.rotation,
-                    child: clipContent,
-                  );
-                }
-
-                if (anim.rotationX != 0.0) {
-                  clipContent = Transform(
-                    alignment: Alignment.topLeft,
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.001)
-                      ..rotateX(anim.rotationX),
-                    child: clipContent,
-                  );
-                }
-
-                if (anim.rotationY != 0.0) {
-                  clipContent = Transform(
-                    alignment: Alignment.topLeft,
-                    transform: Matrix4.identity()
-                      ..setEntry(3, 2, 0.001)
-                      ..rotateY(anim.rotationY),
-                    child: clipContent,
-                  );
-                }
-
-                if (anim.clipProgress < 1.0) {
-                  clipContent = ClipRect(
-                    child: Align(
-                      alignment: Alignment.centerLeft,
-                      widthFactor: anim.clipProgress.clamp(0.0, 1.0),
-                      child: clipContent,
-                    ),
-                  );
-                }
-
-                return Positioned(
-                  left: rect.left,
-                  top: rect.top,
-                  child: Stack(
-                    clipBehavior: Clip.none,
-                    children: [
-                      clipContent,
-                      if (anim.underlineProgress > 0)
-                        Positioned(
-                          left: 0,
-                          top: rect.height,
-                          child: Container(
-                            width: rect.width * anim.underlineProgress.clamp(0.0, 1.0),
-                            height: 2,
-                            color: anim.color ?? effectiveStyle.color,
-                          ),
-                        ),
-                    ],
-                  ),
-                );
-              }),
-            ],
-          ),
-        );
-      },
+    return AnimatedTextRender(
+      text: widget.text,
+      animations: animations,
+      textStyle: effectiveStyle,
+      textDirection: widget.textDirection,
+      textAlign: widget.textAlign,
+      strutStyle: widget.strutStyle,
+      textHeightBehavior: widget.textHeightBehavior,
+      textWidthBasis: widget.textWidthBasis,
     );
   }
 }

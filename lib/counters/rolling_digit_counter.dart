@@ -1,16 +1,56 @@
 import 'package:flutter/material.dart';
 
+/// Odometer-style digit counter with per-character styled boxes.
+///
+/// Each digit is rendered in its own box with a retro odometer look,
+/// using tabular figures for consistent digit widths.
+///
+/// ```dart
+/// RollingDigitCounter(
+///   value: 12345,
+///   digitWidth: 28,
+///   digitHeight: 40,
+/// )
+/// ```
 class RollingDigitCounter extends StatefulWidget {
+  /// The target numeric value to animate toward.
   final num value;
+
+  /// Number of decimal places to display.
   final int decimals;
+
+  /// Duration of the animation.
   final Duration duration;
+
+  /// Text style for the digits.
   final TextStyle? style;
+
+  /// Whether the animation starts automatically.
   final bool autoplay;
+
+  /// When true, animation state survives scroll-off.
   final bool keepAlive;
+
+  /// Width of each digit box in logical pixels.
   final double digitWidth;
+
+  /// Height of each digit box in logical pixels.
   final double digitHeight;
+
+  /// Background color of each digit box.
   final Color? backgroundColor;
 
+  /// Creates an odometer-style rolling digit counter.
+  ///
+  /// [value] — target numeric value to animate toward (required).
+  /// [decimals] — decimal places to display.
+  /// [duration] — animation duration.
+  /// [style] — text style for the digits.
+  /// [autoplay] — whether animation starts automatically.
+  /// [keepAlive] — preserves animation state in scroll-off.
+  /// [digitWidth] — width of each digit box in pixels.
+  /// [digitHeight] — height of each digit box in pixels.
+  /// [backgroundColor] — background color of each digit box.
   const RollingDigitCounter({
     super.key,
     required this.value,

@@ -3,10 +3,24 @@ import 'package:flutter/material.dart';
 import '../core/text_effect.dart';
 import '../core/character_animation.dart';
 
+/// Flips characters in 3D around the X or Y axis.
+///
+/// Each character rotates with a perspective effect and dips in opacity
+/// at the midpoint for a realistic flip appearance.
 class FlipEffect extends TextEffect {
+  /// Number of full 180° flips per character.
   final int flipCount;
+
+  /// Flip axis: `true` = Y axis (horizontal flip), `false` = X axis (vertical flip).
   final bool axis;
 
+  /// Creates a 3D flip animation on the chosen axis.
+  ///
+  /// [duration] — animation cycle duration per character.
+  /// [curve] — easing curve for the flip.
+  /// [flipCount] — number of full 180° flips per character.
+  /// [axis] — true = Y axis (horizontal flip), false = X axis (vertical flip).
+  /// [delayBetweenChars] — stagger delay between characters.
   const FlipEffect({
     super.duration = const Duration(milliseconds: 1000),
     super.curve = Curves.easeOut,
@@ -15,6 +29,7 @@ class FlipEffect extends TextEffect {
     super.delayBetweenChars = const Duration(milliseconds: 80),
   });
 
+  /// Generates per-character 3D rotation and opacity dip at midpoint.
   @override
   List<CharacterAnimation> getAnimations(double progress, int charCount) {
     if (charCount == 0) return [];
