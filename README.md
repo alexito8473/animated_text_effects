@@ -1,11 +1,13 @@
-# animated_text_effects
+﻿# animated_text_effects
 
 A Flutter package for text with **45 composable animation effects** and **4 animated counter widgets**. Combine effects freely, control playback, and persist state across scroll off-screen.
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Flutter-3.3%2B-blue" alt="Flutter">
-  <img src="https://img.shields.io/badge/license-MIT-green" alt="License">
-  <img src="https://img.shields.io/badge/version-0.0.1-orange" alt="Version">
+  <img src="doc/screenshots/combo.gif" width="600" alt="Combined effects demo">
+</p>
+<p align="center">
+  <img src="https://img.shields.io/badge/Flutter-3.3%2B-blue?style=flat-square&labelColor=333" alt="Flutter">
+  <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square&labelColor=333" alt="License">
 </p>
 
 ---
@@ -23,128 +25,9 @@ A Flutter package for text with **45 composable animation effects** and **4 anim
 
 ## 📋 Effects
 
-| # | Effect | Widget | Description |
-|---|---|---|---|
-| 1 | **Fade** | `FadeEffect` | Characters fade in sequentially |
-| 2 | **Gradient** | `GradientEffect` | Animated color sweep across text |
-| 3 | **Wave** | `WaveEffect` | Characters scale up/down in a wave |
-| 4 | **Typewriter** | `TypewriterEffect` | Classic typewriter reveal with cursor |
-| 5 | **Bounce** | `BounceEffect` | Characters bounce vertically in sequence |
-| 6 | **Shimmer** | `ShimmerEffect` | Highlight sweep across the text |
-| 7 | **Slide** | `SlideEffect` | Characters slide in from any direction |
-| 8 | **Blur** | `BlurEffect` | Characters transition blurry-to-sharp |
-| 9 | **Rainbow** | `RainbowEffect` | Cycling rainbow colors per character |
-| 10 | **Glow** | `GlowEffect` | Pulsing glow behind text |
-| 11 | **Ripple** | `RippleEffect` | Circular ripple from center outward |
-| 12 | **Spin** | `SpinEffect` | Characters rotate around their center |
-| 13 | **Flip** | `FlipEffect` | Characters flip horizontally |
-| 14 | **Wiggle** | `WiggleEffect` | Random-angle jitter per character |
-| 15 | **Pulse** | `PulseEffect` | Scale pulsing rhythm |
-| 16 | **Scatter** | `ScatterEffect` | Characters fly in from random offsets |
-| 17 | **Neon Flicker** | `NeonFlickerEffect` | Random flicker with glow color |
-| 18 | **Elastic** | `ElasticEffect` | Overshoot bounce with elastic curve |
-| 19 | **Highlight** | `HighlightEffect` | Background color highlight sweep |
-| 20 | **Underline** | `UnderlineEffect` | Animated underline per character |
-| 21 | **Progress Text** | `ProgressTextEffect` | Binary color switch left-to-right |
-| 22 | **Staggered Appear** | `StaggeredAppearEffect` | Sequential slide+opacity from any direction |
-| 23 | **Fire** | `FireEffect` | Flickering orange/red/yellow flames |
-| 24 | **Smoke** | `SmokeEffect` | Rising smoky particles that fade |
-| 25 | **VHS Glitch** | `VHSGlitchEffect` | Scan lines + color shift + jitter |
-| 26 | **Reveal** | `RevealEffect` | Clip-reveal from top/bottom/left/right |
-| 27 | **Liquid** | `LiquidEffect` | Wavy distortion + gradient swoosh |
-| 28 | **Scanner** | `ScannerEffect` | Scanning line reveal with clip |
-| 29 | **Wave Color** | `WaveColorEffect` | Color wave across characters |
-| 30 | **Breathing Opacity** | `BreathingOpacityEffect` | Slow pulsing opacity |
-| 31 | **Conveyor Belt** | `ConveyorBeltEffect` | Characters loop horizontally |
-| 32 | **Melt Drip** | `MeltDripEffect` | Stretch + slide down like melting |
-| 33 | **Sparkle Twinkle** | `SparkleTwinkleEffect` | Random sparkle highlights |
-| 34 | **Matrix Rain** | `MatrixRainEffect` | Green rain characters falling |
-| 35 | **Glitch Split** | `GlitchSplitEffect` | Horizontal split with offset jitter |
-| 36 | **Scramble** | `ScrambleEffect` | Characters unscramble from random chars via `character` override |
-| 37 | **Pop In** | `PopInEffect` | Scale overshoot entrance (peak > 1.0, settles at 1.0) |
-| 38 | **Shake** | `ShakeEffect` | Earthquake-style jitter with decreasing intensity |
-| 39 | **Flag Wave** | `FlagWaveEffect` | 3D rotationY sinusoidal wave (like a waving flag) |
-| 40 | **Random Reveal** | `RandomRevealEffect` | Characters reveal in random order via noise threshold |
-| 41 | **Tracking** | `TrackingEffect` | Letter-spacing expansion from center or rightward |
-| 42 | **Glow Reveal** | `GlowRevealEffect` | Cinematic bloom-to-sharp (blur + scale + opacity) |
-| 43 | **Kinetic Type** | `KineticTypeEffect` | Continuous wave bob/floating (Apple keynote style) |
-| 44 | **Split Reveal** | `SplitRevealEffect` | Characters split from center (left half from left, right from right) |
-| 45 | **Ink Drops** | `InkDropsEffect` | Ink splatter reveal outward from random drop points |
+### 📂 Entry & Reveal
 
-## 📟 Counter Widgets
-
-| Widget | Description |
-|---|---|
-| `AnimatedCounter` | Generic animated number (int or double) with color lerp and scale pulse |
-| `AnimatedPercentage` | `AnimatedCounter` with `%` suffix |
-| `AnimatedCurrency` | `AnimatedCounter` with symbol, thousands separator, plus sign |
-| `AnimatedStatCard` | Material card with icon, label, and `AnimatedCounter` |
-| `RollingDigitCounter` | Digit-box style counter with per-character boxes |
-
-## 📦 Sequence widgets
-
-### AnimatedTextSequence — sequential multi-text playback
-
-Cycle through a list of texts with individual effects, transition animations, and configurable display/transition durations.
-
-```dart
-AnimatedTextSequence(
-  texts: [
-    SequenceText('Hello', effects: const [FadeEffect()]),
-    SequenceText('World', effects: const [WaveEffect()]),
-    SequenceText('!', effects: const [BounceEffect()]),
-  ],
-  repeat: true,
-  displayDuration: Duration(seconds: 3),
-  transitionDuration: Duration(milliseconds: 600),
-  transitionEffect: FadeEffect(),
-  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-)
-```
-
-### Gap between texts
-
-Insert static separator text between sequence items using `SequenceText` with no effects:
-
-```dart
-AnimatedTextSequence(
-  texts: [
-    SequenceText('Hello', effects: const [FadeEffect()]),
-    SequenceText(' • ', effects: const []),  // static gap
-    SequenceText('World', effects: const [FadeEffect()]),
-  ],
-  repeat: true,
-  style: TextStyle(fontSize: 28),
-)
-```
-
-### AnimatedRichText — inline static + animated segments
-
-Mix static text with animated segments inside a single widget:
-
-```dart
-AnimatedRichText(
-  segments: [
-    const TextSegment.static('Static prefix '),
-    TextSegment.animated('Animated!', effects: const [FadeEffect(), WaveEffect()]),
-    const TextSegment.static(' Static suffix'),
-  ],
-  repeat: true,
-  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
-)
-```
-
-## 🚀 Getting started
-
-### Import
-
-```dart
-import 'package:animated_text_effects/animated_text_effects.dart';
-```
-
-## 📖 Usage
-
-### Basic — single effect
+### Fade
 
 ```dart
 AnimatedText(
@@ -154,597 +37,861 @@ AnimatedText(
 )
 ```
 
-### Loop modes
+<p align="center">
+  <img src="doc/screenshots/fade.gif" width="600">
+</p>
 
-```dart
-// Infinite forward
-AnimatedText(text, effects: const [WaveEffect()], repeat: true);
+---
 
-// Ping-pong (requires repeat: true)
-AnimatedText(text, effects: const [BounceEffect()], repeat: true, reverse: true);
-```
-
-### Multiple combined effects
+### Slide
 
 ```dart
 AnimatedText(
-  'Fade + Wave + Gradient',
-  effects: const [
-    FadeEffect(delayBetweenChars: Duration(milliseconds: 30)),
-    WaveEffect(scaleMin: 0.8, scaleMax: 1.2),
-    GradientEffect(colors: [Colors.cyan, Colors.purple, Colors.orange]),
-  ],
-  repeat: true,
-  style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+  'Hello World',
+  effects: const [SlideEffect()],
+  style: TextStyle(fontSize: 32),
 )
 ```
 
-### External controller
+<p align="center">
+  <img src="doc/screenshots/slide.gif" width="600">
+</p>
+
+---
+
+### Blur
 
 ```dart
-final controller = TextEffectController();
-
-AnimatedText('Controlled text', effects: const [FadeEffect()], controller: controller);
-
-controller.play();
-controller.pause();
-controller.stop();
-controller.repeat();                  // infinite forward
-controller.repeat(reverse: true);     // ping-pong
-controller.repeat(count: 3);          // finite count
-controller.seekTo(0.5);              // jump to 50%
+AnimatedText(
+  'Hello World',
+  effects: const [BlurEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### Scroll persistence
+<p align="center">
+  <img src="doc/screenshots/blur.gif" width="600">
+</p>
 
-`AnimatedText` and `AnimatedCounter` preserve animation state when scrolling off-screen:
+---
+
+### Typewriter
 
 ```dart
-AnimatedText('Stays alive', effects: const [FadeEffect()], keepAlive: true);
-AnimatedCounter(value: 42, keepAlive: true);
+AnimatedText(
+  'Hello World',
+  effects: const [TypewriterEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Use `TextEffectController` to persist state across widget mount/unmount cycles:
+<p align="center">
+  <img src="doc/screenshots/typewriter.gif" width="600">
+</p>
+
+---
+
+### Scatter
 
 ```dart
-final controller = TextEffectController();
-
-@override
-void dispose() {
-  controller.dispose(); // saves progress internally
-  super.dispose();
-}
+AnimatedText(
+  'Hello World',
+  effects: const [ScatterEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-## 🎛️ Effect reference
+<p align="center">
+  <img src="doc/screenshots/scatter.gif" width="600">
+</p>
 
-### FadeEffect
+---
+
+### Staggered Appear
 
 ```dart
-FadeEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeInOut,
-  Duration delayBetweenChars = 50ms,
-  double opacityFrom = 0.0,
-  double opacityTo = 1.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [StaggeredAppearEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### GradientEffect
+<p align="center">
+  <img src="doc/screenshots/staggered.gif" width="600">
+</p>
+
+---
+
+### Random Reveal
 
 ```dart
-GradientEffect({
-  Duration duration = 2000ms,
-  Curve curve = Curves.linear,
-  List<Color> colors = [Colors.blue, Colors.purple, Colors.pink],
-  Axis direction = Axis.horizontal,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [RandomRevealEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### WaveEffect
+<p align="center">
+  <img src="doc/screenshots/random_reveal.gif" width="600">
+</p>
+
+---
+
+### Reveal
 
 ```dart
-WaveEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  double scaleMin = 0.5,
-  double scaleMax = 1.5,
-  int waveCount = 2,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [RevealEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### TypewriterEffect
+<p align="center">
+  <img src="doc/screenshots/reveal.gif" width="600">
+</p>
+
+---
+
+### Scramble
 
 ```dart
-TypewriterEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.linear,
-  Duration delayBetweenChars = 80ms,
-  String cursor = '|',
-  Color? cursorColor,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [ScrambleEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### BounceEffect
+<p align="center">
+  <img src="doc/screenshots/scramble.gif" width="600">
+</p>
+
+---
+
+### Pop In
 
 ```dart
-BounceEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeOut,
-  double height = 12.0,
-  int bounceCount = 1,
-  Duration delayBetweenChars = 60ms,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [PopInEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### ShimmerEffect
+<p align="center">
+  <img src="doc/screenshots/pop_in.gif" width="600">
+</p>
+
+---
+
+### Ripple
 
 ```dart
-ShimmerEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  Color baseColor = Colors.grey,
-  Color highlightColor = Colors.white,
-  double width = 0.3,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [RippleEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### SlideEffect
+<p align="center">
+  <img src="doc/screenshots/ripple.gif" width="600">
+</p>
+
+---
+
+### Elastic
 
 ```dart
-SlideEffect({
-  Duration duration = 800ms,
-  Curve curve = Curves.easeOut,
-  Duration delayBetweenChars = 30ms,
-  SlideDirection direction = SlideDirection.left,
-  double distance = 50.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [ElasticEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Directions: `left`, `right`, `up`, `down`, `topLeft`, `topRight`, `bottomLeft`, `bottomRight`.
+<p align="center">
+  <img src="doc/screenshots/elastic.gif" width="600">
+</p>
 
-### BlurEffect
+---
+
+
+### 🎯 Motion & Energy
+
+### Wave
 
 ```dart
-BlurEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeOut,
-  Duration delayBetweenChars = 40ms,
-  double sigmaFrom = 8.0,
-  double sigmaTo = 0.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [WaveEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### RainbowEffect
+<p align="center">
+  <img src="doc/screenshots/wave.gif" width="600">
+</p>
+
+---
+
+### Bounce
 
 ```dart
-RainbowEffect({
-  Duration duration = 2000ms,
-  Curve curve = Curves.linear,
-  double saturation = 0.8,
-  double lightness = 0.5,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [BounceEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### GlowEffect
+<p align="center">
+  <img src="doc/screenshots/bounce.gif" width="600">
+</p>
+
+---
+
+### Wiggle
 
 ```dart
-GlowEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  Color color = Colors.cyan,
-  double radius = 8.0,
-  double minOpacity = 0.2,
-  double maxOpacity = 0.8,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [WiggleEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### RippleEffect
+<p align="center">
+  <img src="doc/screenshots/wiggle.gif" width="600">
+</p>
+
+---
+
+### Shake
 
 ```dart
-RippleEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeOut,
-  Color? color,
-  double scale = 1.5,
-  double opacityFrom = 0.6,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [ShakeEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### SpinEffect
+<p align="center">
+  <img src="doc/screenshots/shake.gif" width="600">
+</p>
+
+---
+
+### Pulse
 
 ```dart
-SpinEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  double rotations = 1,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [PulseEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### FlipEffect
+<p align="center">
+  <img src="doc/screenshots/pulse.gif" width="600">
+</p>
+
+---
+
+### Spin
 
 ```dart
-FlipEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeInOut,
-  double angleFrom = 0.0,
-  double angleTo = 3.1416,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [SpinEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### WiggleEffect
+<p align="center">
+  <img src="doc/screenshots/spin.gif" width="600">
+</p>
+
+---
+
+### Flip
 
 ```dart
-WiggleEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeInOut,
-  double maxAngle = 0.2,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [FlipEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### PulseEffect
+<p align="center">
+  <img src="doc/screenshots/flip.gif" width="600">
+</p>
+
+---
+
+### Flag Wave
 
 ```dart
-PulseEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeInOut,
-  double scaleMin = 0.8,
-  double scaleMax = 1.2,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [FlagWaveEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### ScatterEffect
+<p align="center">
+  <img src="doc/screenshots/flag_wave.gif" width="600">
+</p>
+
+---
+
+### Liquid
 
 ```dart
-ScatterEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeOut,
-  double maxOffset = 80.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [LiquidEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### NeonFlickerEffect
+<p align="center">
+  <img src="doc/screenshots/liquid.gif" width="600">
+</p>
+
+---
+
+### Conveyor Belt
 
 ```dart
-NeonFlickerEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.linear,
-  Color color = Colors.cyan,
-  double glowRadius = 10.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [ConveyorBeltEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### ElasticEffect
+<p align="center">
+  <img src="doc/screenshots/conveyor.gif" width="600">
+</p>
+
+---
+
+
+### 🌈 Color & Light
+
+### Gradient
 
 ```dart
-ElasticEffect({
-  Duration duration = 1200ms,
-  Curve curve = Curves.elasticOut,
-  double height = 20.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [GradientEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### HighlightEffect
+<p align="center">
+  <img src="doc/screenshots/gradient.gif" width="600">
+</p>
+
+---
+
+### Rainbow
 
 ```dart
-HighlightEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  Color color = Colors.yellow,
-  double opacity = 0.4,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [RainbowEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### UnderlineEffect
+<p align="center">
+  <img src="doc/screenshots/rainbow.gif" width="600">
+</p>
+
+---
+
+### Glow
 
 ```dart
-UnderlineEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  Color color = Colors.blue,
-  double height = 3.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [GlowEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### ProgressTextEffect
+<p align="center">
+  <img src="doc/screenshots/glow.gif" width="600">
+</p>
+
+---
+
+### Shimmer
 
 ```dart
-ProgressTextEffect({
-  Duration duration = 2000ms,
-  Curve curve = Curves.linear,
-  Color activeColor = Colors.green,
-  Color inactiveColor = Colors.grey,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [ShimmerEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### StaggeredAppearEffect
+<p align="center">
+  <img src="doc/screenshots/shimmer.gif" width="600">
+</p>
+
+---
+
+### Wave Color
 
 ```dart
-StaggeredAppearEffect({
-  Duration duration = 1200ms,
-  Curve curve = Curves.easeOut,
-  Duration delayBetweenChars = 40ms,
-  SlideDirection direction = SlideDirection.down,
-  double distance = 30.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [WaveColorEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### FireEffect
+<p align="center">
+  <img src="doc/screenshots/wave_color.gif" width="600">
+</p>
+
+---
+
+### Breathing Opacity
 
 ```dart
-FireEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.linear,
-  double intensity = 1.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [BreathingOpacityEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### SmokeEffect
+<p align="center">
+  <img src="doc/screenshots/breathing.gif" width="600">
+</p>
+
+---
+
+### Glow Reveal
 
 ```dart
-SmokeEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeOut,
-  double drift = 20.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [GlowRevealEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### VHSGlitchEffect
+<p align="center">
+  <img src="doc/screenshots/glow_reveal.gif" width="600">
+</p>
+
+---
+
+### Neon Flicker
 
 ```dart
-VHSGlitchEffect({
-  Duration duration = 800ms,
-  Curve curve = Curves.linear,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [NeonFlickerEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### RevealEffect
+<p align="center">
+  <img src="doc/screenshots/neon_flicker.gif" width="600">
+</p>
+
+---
+
+### Highlight
 
 ```dart
-RevealEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeOut,
-  RevealDirection direction = RevealDirection.left,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [HighlightEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Directions: `left`, `right`, `up`, `down`.
+<p align="center">
+  <img src="doc/screenshots/highlight.gif" width="600">
+</p>
 
-### LiquidEffect
+---
+
+### Sparkle Twinkle
 
 ```dart
-LiquidEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  double waveHeight = 15.0,
-  List<Color>? colors,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [SparkleTwinkleEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### ScannerEffect
+<p align="center">
+  <img src="doc/screenshots/sparkle.gif" width="600">
+</p>
+
+---
+
+### Scanner
 
 ```dart
-ScannerEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  Color lineColor = Colors.cyan,
-  double lineWidth = 4.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [ScannerEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### WaveColorEffect
+<p align="center">
+  <img src="doc/screenshots/scanner.gif" width="600">
+</p>
+
+---
+
+
+### 💥 VFX & Distortion
+
+### Fire
 
 ```dart
-WaveColorEffect({
-  Duration duration = 2000ms,
-  Curve curve = Curves.linear,
-  List<Color> colors = const [Colors.red, Colors.orange, Colors.yellow, Colors.green, Colors.blue, Colors.indigo, Colors.violet],
-})
+AnimatedText(
+  'Hello World',
+  effects: const [FireEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### BreathingOpacityEffect
+<p align="center">
+  <img src="doc/screenshots/fire.gif" width="600">
+</p>
+
+---
+
+### Smoke
 
 ```dart
-BreathingOpacityEffect({
-  Duration duration = 2000ms,
-  Curve curve = Curves.sine,
-  double minOpacity = 0.3,
-  double maxOpacity = 1.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [SmokeEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### ConveyorBeltEffect
+<p align="center">
+  <img src="doc/screenshots/smoke.gif" width="600">
+</p>
+
+---
+
+### VHS Glitch
 
 ```dart
-ConveyorBeltEffect({
-  Duration duration = 2000ms,
-  Curve curve = Curves.linear,
-  double distance = 60.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [VHSGlitchEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### MeltDripEffect
+<p align="center">
+  <img src="doc/screenshots/vhs_glitch.gif" width="600">
+</p>
+
+---
+
+### Glitch Split
 
 ```dart
-MeltDripEffect({
-  Duration duration = 1200ms,
-  Curve curve = Curves.easeIn,
-  double stretch = 30.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [GlitchSplitEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### SparkleTwinkleEffect
+<p align="center">
+  <img src="doc/screenshots/glitch_split.gif" width="600">
+</p>
+
+---
+
+### Matrix Rain
 
 ```dart
-SparkleTwinkleEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.linear,
-  Color sparkleColor = Colors.white,
-  double probability = 0.3,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [MatrixRainEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### MatrixRainEffect
+<p align="center">
+  <img src="doc/screenshots/matrix.gif" width="600">
+</p>
+
+---
+
+### Melt Drip
 
 ```dart
-MatrixRainEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.linear,
-  Color rainColor = Colors.green,
-  double fallDistance = 40.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [MeltDripEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### ScrambleEffect
+<p align="center">
+  <img src="doc/screenshots/melt_drip.gif" width="600">
+</p>
+
+---
+
+### Kinetic Type
 
 ```dart
-ScrambleEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeInOut,
-  Duration delayBetweenChars = 60ms,
-  String charset = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789',
-  int seed = 42,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [KineticTypeEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Characters temporarily show random chars from `charset` (via `character` override) at progress 0, resolving to the actual text at progress 1. The `seed` controls the deterministic scramble pattern.
+<p align="center">
+  <img src="doc/screenshots/kinetic.gif" width="600">
+</p>
 
-### PopInEffect
+---
+
+### Split Reveal
 
 ```dart
-PopInEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeOutBack,
-  Duration delayBetweenChars = 60ms,
-  double scaleFrom = 0.0,
-  double scalePeak = 1.2,
-  double opacityFrom = 0.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [SplitRevealEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Characters scale up from `scaleFrom` past 1.0 to `scalePeak` before settling at 1.0, creating a playful overshoot entrance.
+<p align="center">
+  <img src="doc/screenshots/split_reveal.gif" width="600">
+</p>
 
-### ShakeEffect
+---
+
+### Ink Drops
 
 ```dart
-ShakeEffect({
-  Duration duration = 800ms,
-  Curve curve = Curves.easeOut,
-  double intensity = 4.0,
-  double rotationAmplitude = 0.1,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [InkDropsEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Each character jitters with decreasing intensity towards progress 1, simulating an earthquake or vibration effect.
+<p align="center">
+  <img src="doc/screenshots/ink_drops.gif" width="600">
+</p>
 
-### FlagWaveEffect
+---
+
+
+### 📏 Utility
+
+### Progress Text
 
 ```dart
-FlagWaveEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  double amplitude = 0.3,
-  int waveCount = 2,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [ProgressTextEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Applies a 3D rotationY wave across characters, creating a flag-waving effect. Characters at the same index have the same rotation for a cohesive wave.
+<p align="center">
+  <img src="doc/screenshots/progress.gif" width="600">
+</p>
 
-### RandomRevealEffect
+---
+
+### Tracking
 
 ```dart
-RandomRevealEffect({
-  Duration duration = 1500ms,
-  Curve curve = Curves.easeInOut,
-  Duration delayBetweenChars = Duration.zero,
-  double opacityFrom = 0.0,
-  double scaleFrom = 0.5,
-  int seed = 42,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [TrackingEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-Characters reveal in a random order (determined by `seed`) instead of left-to-right, each fading/scaling in independently based on noise threshold.
+<p align="center">
+  <img src="doc/screenshots/tracking.gif" width="600">
+</p>
 
-### GlitchSplitEffect
+---
+
+### Underline
 
 ```dart
-GlitchSplitEffect({
-  Duration duration = 600ms,
-  Curve curve = Curves.linear,
-  double maxOffset = 10.0,
-})
+AnimatedText(
+  'Hello World',
+  effects: const [UnderlineEffect()],
+  style: TextStyle(fontSize: 32),
+)
 ```
 
-### TrackingEffect
+<p align="center">
+  <img src="doc/screenshots/underline.gif" width="600">
+</p>
+
+---
+
+
+## 🔗 Sequence & Rich Text
+
+### AnimatedTextSequence
 
 ```dart
-TrackingEffect({
-  Duration duration = 800ms,
-  Curve curve = Curves.easeOut,
-  Duration delayBetweenChars = Duration.zero,
-  double spacing = 30.0,
-  bool fromCenter = true,
-})
+AnimatedTextSequence(
+  texts: [
+    SequenceText('Hello', effects: const [FadeEffect()]),
+    SequenceText('World', effects: const [WaveEffect()]),
+    SequenceText('!', effects: const [BounceEffect()]),
+  ],
+  repeat: true,
+  displayDuration: Duration(seconds: 2),
+  transitionDuration: Duration(milliseconds: 600),
+  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+)
 ```
 
-Characters spread apart horizontally. When `fromCenter` is `true` (default), text expands outward from the center; when `false`, characters shift rightward linearly.
+<p align="center">
+  <img src="doc/screenshots/sequence.gif" width="600">
+</p>
 
-### GlowRevealEffect
+---
+
+### AnimatedRichText
 
 ```dart
-GlowRevealEffect({
-  Duration duration = 1200ms,
-  Curve curve = Curves.easeOut,
-  Duration delayBetweenChars = 30ms,
-  double blurSigmaFrom = 10.0,
-  double scaleFrom = 1.4,
-})
+AnimatedRichText(
+  segments: [
+    TextSegment.static('Static '),
+    TextSegment.animated('Animated!', effects: const [FadeEffect(), WaveEffect()]),
+    TextSegment.static(' suffix'),
+  ],
+  repeat: true,
+  style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
+)
 ```
 
-Each character blooms from a blurred, slightly enlarged state to sharp and fully opaque. A subtle pulse adds cinematic depth.
+<p align="center">
+  <img src="doc/screenshots/rich_text.gif" width="600">
+</p>
 
-### KineticTypeEffect
+---
+
+### AnimatedCounter
 
 ```dart
-KineticTypeEffect({
-  Duration duration = 2000ms,
-  Curve curve = Curves.linear,
-  Duration delayBetweenChars = Duration.zero,
-  double amplitude = 4.0,
-  double waveCount = 2.0,
-  double rotationAmplitude = 0.03,
-})
+AnimatedCounter(
+  value: 99999,
+  duration: Duration(seconds: 3),
+  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+)
 ```
 
-A continuous wave of vertical bob + slight rotation + scale — reminiscent of Apple keynote kinetic typography. All characters move simultaneously for a fluid, organic feel.
+<p align="center">
+  <img src="doc/screenshots/animated_counter.gif" width="600">
+</p>
 
-### SplitRevealEffect
+---
+
+### AnimatedPercentage
 
 ```dart
-SplitRevealEffect({
-  Duration duration = 700ms,
-  Curve curve = Curves.easeOut,
-  Duration delayBetweenChars = 20ms,
-  double distance = 80.0,
-})
+AnimatedPercentage(
+  value: 87.5,
+  decimals: 1,
+  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+)
 ```
 
-Characters on the left half slide in from the left, characters on the right half slide in from the right, and the center character appears in place. Creates a satisfying symmetrical reveal.
+<p align="center">
+  <img src="doc/screenshots/animated_percentage.gif" width="600">
+</p>
 
-### InkDropsEffect
+---
+
+### AnimatedCurrency
 
 ```dart
-InkDropsEffect({
-  Duration duration = 1000ms,
-  Curve curve = Curves.easeOut,
-  Duration delayBetweenChars = Duration.zero,
-  int dropCount = 3,
-  double spreadDistance = 100.0,
-  int seed = 42,
-})
+AnimatedCurrency(
+  value: 123456.78,
+  decimals: 2,
+  symbol: r'$',
+  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+)
 ```
 
-Characters reveal outward from random ink drop points. Each character scales up from 0.3, fades in, and sharpens as the ink spreads. The `seed` parameter controls deterministic drop placement.
+<p align="center">
+  <img src="doc/screenshots/animated_currency.gif" width="600">
+</p>
+
+---
+
+### RollingDigitCounter
+
+```dart
+RollingDigitCounter(
+  value: 2026,
+  style: TextStyle(fontSize: 48, fontWeight: FontWeight.bold),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/rolling_digit.gif" width="600">
+</p>
+
+---
+
+### AnimatedStatCard
+
+```dart
+AnimatedStatCard(
+  value: 8472,
+  label: 'Users',
+  icon: Icons.people,
+  activeColor: Colors.blue,
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/stat_card.gif" width="600">
+</p>
+
+---
+
+## 🚀 Getting started
+
+### Import
+
+```dart
+import 'package:animated_text_effects/animated_text_effects.dart';
+```
 
 ## 📟 Counter widgets reference
 

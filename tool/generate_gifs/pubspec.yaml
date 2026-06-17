@@ -1,0 +1,9 @@
+name: generate_gifs
+description: Generates animated GIFs from captured PNG frames.
+publish_to: none
+
+environment:
+  sdk: ^3.0.0
+
+dependencies:
+  image: ^4.5.3

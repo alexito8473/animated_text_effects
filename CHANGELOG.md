@@ -1,3 +1,13 @@
+## 0.0.5
+
+- **GIFs más fluidos**: Frames por defecto aumentados de 24→40, totalMs de 2400→4000
+- **Reproducción de GIF optimizada**: gifDelay 8→15 para una reproducción 50% más lenta y fluida
+- **Padding consistente en capturas**: Container fijo de 800×300 con Center para encuadre uniforme
+- **Correcciones**: NeonFlickerEffect glow (cyan→pinkAccent), UnderlineEffect ahora visible (era invisible), FireEffect con más jitter/blur/scale, SmokeEffect con más altura/blur, RollingDigitCounter sin recorte de dígitos (fontSize 64→36, digitWidth 24, digitHeight 34)
+- **README renovado**: Imágenes centradas con `<p align="center">`, CSS inline eliminado (`border-radius`, `box-shadow`), URLs cambiadas de raw.githubusercontent.com a rutas relativas `doc/screenshots/`, reorganizado en 5 categorías planas, reducido de 1201→941 líneas, badge 0.0.1 eliminado, badges actualizados con estilo `flat-square`
+- **53 GIFs regenerados** con la configuración optimizada
+- **Tests**: 53/53 correctos
+
 ## 0.0.4
 
 - **5 new effects**: Tracking, Glow Reveal, Kinetic Type, Split Reveal, Ink Drops
