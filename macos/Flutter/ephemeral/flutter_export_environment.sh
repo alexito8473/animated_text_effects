@@ -1,11 +1,12 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=C:\Users\aleja\OneDrive\Escritorio\flutter"
-export "FLUTTER_APPLICATION_PATH=C:\Users\aleja\OneDrive\Escritorio\project\animated_text_effects"
+export "FLUTTER_ROOT=/Users/alejandro/Desktop/sdkFlutter/flutter"
+export "FLUTTER_APPLICATION_PATH=/Users/alejandro/Desktop/projectos/animated_text_effects"
+export "FLUTTER_FRAMEWORK_SWIFT_PACKAGE_PATH=/Users/alejandro/Desktop/projectos/animated_text_effects/macos/Flutter/ephemeral/Packages/.packages/FlutterFramework"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
-export "FLUTTER_BUILD_NAME=0.0.1"
-export "FLUTTER_BUILD_NUMBER=0.0.1"
+export "FLUTTER_BUILD_NAME=0.0.5"
+export "FLUTTER_BUILD_NUMBER=0.0.5"
 export "DART_OBFUSCATION=false"
 export "TRACK_WIDGET_CREATION=true"
 export "TREE_SHAKE_ICONS=false"

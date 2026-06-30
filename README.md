@@ -1,6 +1,6 @@
 ﻿# animated_text_effects
 
-A Flutter package for text with **45 composable animation effects** and **4 animated counter widgets**. Combine effects freely, control playback, and persist state across scroll off-screen.
+A Flutter package for text with **66 composable animation effects** and **4 animated counter widgets**. Combine effects freely, control playback, and persist state across scroll off-screen.
 
 <p align="center">
   <img src="doc/screenshots/combo.gif" width="600" alt="Combined effects demo">
@@ -8,13 +8,14 @@ A Flutter package for text with **45 composable animation effects** and **4 anim
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.3%2B-blue?style=flat-square&labelColor=333" alt="Flutter">
   <img src="https://img.shields.io/badge/license-MIT-green?style=flat-square&labelColor=333" alt="License">
+  <img src="https://img.shields.io/pub/v/animated_text_effects?style=flat-square&labelColor=333" alt="Pub">
 </p>
 
 ---
 
 ## ✨ Features
 
-- **45 effects** — fade, wave, typewriter, fire, smoke, matrix rain, glitch, scramble, shake, tracking, glow reveal, kinetic type, split reveal, ink drops, and more
+- **66 effects** — fade, wave, typewriter, fire, smoke, matrix rain, glitch, scramble, shake, tracking, glow reveal, kinetic type, split reveal, ink drops, chromatic aberration, pixelate, water ripple, vortex, cascade, origami, shatter, morph, curtain, stomp, typewriter error, typewriter delete, falling leaves, fireflies, breath, circular reveal, scan lines, bar wake, weight, countdown, and more
 - **Composable** — apply multiple effects simultaneously (opacity multiplies, translation sums, last color wins)
 - **Loop modes** — forward, ping-pong, or finite repeat counts
 - **External controller** — `TextEffectController` for play/pause/stop/seek
@@ -705,12 +706,329 @@ AnimatedText(
 <p align="center">
   <img src="doc/screenshots/ink_drops.gif" width="600">
 </p>
+---
+
+### Chromatic Aberration
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [ChromaticAberrationEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/chromatic_aberration.gif" width="600">
+</p>
 
 ---
 
+### Pixelate
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [PixelateEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/pixelate.gif" width="600">
+</p>
+
+---
+
+### Water Ripple
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [WaterRippleEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/water_ripple.gif" width="600">
+</p>
+
+---
+
+### Vortex
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [VortexEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/vortex.gif" width="600">
+</p>
+
+---
+
+### Cascade
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [CascadeEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/cascade.gif" width="600">
+</p>
+
+---
+
+### Origami
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [OrigamiEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/origami.gif" width="600">
+</p>
+
+---
+
+### Shatter
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [ShatterEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/shatter.gif" width="600">
+</p>
+
+---
+
+### Morph
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [MorphEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/morph.gif" width="600">
+</p>
+
+---
+
+### Curtain
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [CurtainEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/curtain.gif" width="600">
+</p>
+
+---
+
+### Stomp
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [StompEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/stomp.gif" width="600">
+</p>
+
+---
+
+### Typewriter Error
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [TypewriterErrorEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/typewriter_error.gif" width="600">
+</p>
+
+---
+
+### Typewriter Delete
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [TypewriterDeleteEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/typewriter_delete.gif" width="600">
+</p>
+
+---
+
+### Falling Leaves
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [FallingLeavesEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/falling_leaves.gif" width="600">
+</p>
+
+---
+
+### Fireflies
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [FirefliesEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/fireflies.gif" width="600">
+</p>
+
+---
+
+### Breath
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [BreathEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/breath.gif" width="600">
+</p>
+
+---
+
+### Circular Reveal
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [CircularRevealEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/circular_reveal.gif" width="600">
+</p>
+
+---
+
+### Scan Lines
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [ScanLinesEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/scan_lines.gif" width="600">
+</p>
+
+---
+
+### Bar Wake
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [BarWakeEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/bar_wake.gif" width="600">
+</p>
+
+---
+
+### Weight
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [WeightEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/weight.gif" width="600">
+</p>
+
+---
+
+### Countdown
+
+```dart
+AnimatedText(
+  'Hello World',
+  effects: const [CountdownEffect()],
+  style: TextStyle(fontSize: 32),
+)
+```
+
+<p align="center">
+  <img src="doc/screenshots/countdown.gif" width="600">
+</p>
+
+---
 
 ### 📏 Utility
-
 ### Progress Text
 
 ```dart

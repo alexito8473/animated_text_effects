@@ -85,6 +85,30 @@ void main() {
     _Scenario(name: 'ink_drops', text: 'INK', effects: const [InkDropsEffect()], holdFrames: 6),
 
     // ═══════════════════════════════════════════════════
+    // NUEVOS 21 EFECTOS
+    // ═══════════════════════════════════════════════════
+    _Scenario(name: 'chromatic_aberration', text: 'CHROMATIC', effects: const [ChromaticAberrationEffect()], holdFrames: 0),
+    _Scenario(name: 'pixelate', text: 'PIXELATE', effects: const [PixelateEffect()], holdFrames: 6),
+    _Scenario(name: 'water_ripple', text: 'RIPPLE', effects: const [WaterRippleEffect()], holdFrames: 0),
+    _Scenario(name: 'vortex', text: 'VORTEX', effects: const [VortexEffect()], holdFrames: 6),
+    _Scenario(name: 'cascade', text: 'CASCADE', effects: const [CascadeEffect()], holdFrames: 6),
+    _Scenario(name: 'origami', text: 'ORIGAMI', effects: const [OrigamiEffect()], holdFrames: 6),
+    _Scenario(name: 'shatter', text: 'SHATTER', effects: const [ShatterEffect()], holdFrames: 6),
+    _Scenario(name: 'morph', text: 'MORPH', effects: const [MorphEffect()], holdFrames: 6),
+    _Scenario(name: 'curtain', text: 'CURTAIN', effects: const [CurtainEffect()], holdFrames: 4),
+    _Scenario(name: 'stomp', text: 'STOMP', effects: const [StompEffect()], holdFrames: 6),
+    _Scenario(name: 'typewriter_error', text: 'TYPERROR', effects: const [TypewriterErrorEffect()], holdFrames: 6),
+    _Scenario(name: 'typewriter_delete', text: 'TYPDEL', effects: const [TypewriterDeleteEffect()], holdFrames: 6),
+    _Scenario(name: 'falling_leaves', text: 'LEAVES', effects: const [FallingLeavesEffect()], holdFrames: 6),
+    _Scenario(name: 'fireflies', text: 'FIREFLIES', effects: const [FirefliesEffect()], holdFrames: 6),
+    _Scenario(name: 'breath', text: 'BREATH', effects: const [BreathEffect()], holdFrames: 0),
+    _Scenario(name: 'circular_reveal', text: 'CIRCULAR', effects: const [CircularRevealEffect()], holdFrames: 6),
+    _Scenario(name: 'scan_lines', text: 'SCAN', effects: const [ScanLinesEffect()], holdFrames: 0),
+    _Scenario(name: 'bar_wake', text: 'BAR WAKE', effects: const [BarWakeEffect()], holdFrames: 0),
+    _Scenario(name: 'weight', text: 'WEIGHT', effects: const [WeightEffect()], holdFrames: 0),
+    _Scenario(name: 'countdown', text: 'COUNTDOWN', effects: const [CountdownEffect()], holdFrames: 6),
+
+    // ═══════════════════════════════════════════════════
     // DEMO COMBINADO (hero)
     // ═══════════════════════════════════════════════════
     _Scenario(

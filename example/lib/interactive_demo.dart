@@ -47,6 +47,26 @@ enum _EffectType {
   kineticType,
   splitReveal,
   inkDrops,
+  chromaticAberration,
+  pixelate,
+  waterRipple,
+  vortex,
+  cascade,
+  origami,
+  shatter,
+  morph,
+  curtain,
+  stomp,
+  typewriterError,
+  typewriterDelete,
+  fallingLeaves,
+  fireflies,
+  breath,
+  circularReveal,
+  scanLines,
+  barWake,
+  weight,
+  countdown,
 }
 
 const _curveOptions = [
@@ -119,6 +139,26 @@ const _effectLabels = {
   _EffectType.kineticType: 'Kinetic Type',
   _EffectType.splitReveal: 'Split Reveal',
   _EffectType.inkDrops: 'Ink Drops',
+  _EffectType.chromaticAberration: 'Chromatic Aberration',
+  _EffectType.pixelate: 'Pixelate',
+  _EffectType.waterRipple: 'Water Ripple',
+  _EffectType.vortex: 'Vortex',
+  _EffectType.cascade: 'Cascade',
+  _EffectType.origami: 'Origami',
+  _EffectType.shatter: 'Shatter',
+  _EffectType.morph: 'Morph',
+  _EffectType.curtain: 'Curtain',
+  _EffectType.stomp: 'Stomp',
+  _EffectType.typewriterError: 'Typewriter Error',
+  _EffectType.typewriterDelete: 'Typewriter Delete',
+  _EffectType.fallingLeaves: 'Falling Leaves',
+  _EffectType.fireflies: 'Fireflies',
+  _EffectType.breath: 'Breath',
+  _EffectType.circularReveal: 'Circular Reveal',
+  _EffectType.scanLines: 'Scan Lines',
+  _EffectType.barWake: 'Bar Wake',
+  _EffectType.weight: 'Weight',
+  _EffectType.countdown: 'Countdown',
 };
 
 class InteractiveDemo extends StatefulWidget {
@@ -281,6 +321,54 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
   int _inkDropsDropCount = 3;
   double _inkDropsSpreadDistance = 100.0;
   int _inkDropsSeed = 42;
+
+  // Chromatic Aberration
+  double _chromaticOffset = 4.0;
+  double _chromaticBlurSigma = 0.0;
+  // Pixelate
+  double _pixelateSize = 0.1;
+  // Water Ripple
+  double _waterRippleAmplitude = 8.0;
+  double _waterRippleFrequency = 30.0;
+  // Vortex
+  double _vortexRotationAmplitude = 0.3;
+  // Cascade
+  double _cascadeDelayPerChar = 30.0;
+  // Origami
+  double _origamiFoldAngle = 1.5;
+  // Shatter
+  Color _shatterColor = Colors.orange;
+  // Morph
+  String _morphTargetText = 'World!';
+  // Curtain
+  double _curtainDistance = 100.0;
+  // Stomp
+  double _stompScaleMin = 0.8;
+  // Typewriter Error
+  String _typewriterErrorText = 'Oops!';
+  int _typewriterErrorStayMs = 2000;
+  // Typewriter Delete
+  int _typewriterDeleteStayMs = 2000;
+  // Falling Leaves
+  Color _fallingLeavesColor = Colors.orange;
+  double _fallingLeavesCount = 3;
+  double _fallingLeavesAmplitude = 30.0;
+  // Fireflies
+  double _firefliesCount = 4;
+  double _firefliesSpeed = 1.0;
+  // Breath
+  double _breathScaleMin = 0.9;
+  // Circular Reveal
+  bool _circularRevealInward = false;
+  // Scan Lines
+  double _scanLinesSize = 3.0;
+  // Bar Wake
+  double _barWakeCount = 3;
+  double _barWakeHeight = 0.5;
+  // Weight
+  double _weightScaleMin = 0.5;
+  // Countdown
+  int _countdownFrom = 10;
 
   @override
   void initState() {
@@ -654,6 +742,147 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
           dropCount: _inkDropsDropCount,
           spreadDistance: _inkDropsSpreadDistance,
           seed: _inkDropsSeed,
+        );
+      case _EffectType.chromaticAberration:
+        return ChromaticAberrationEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          splitAmount: _chromaticOffset,
+        );
+      case _EffectType.pixelate:
+        return PixelateEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.waterRipple:
+        return WaterRippleEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          amplitude: _waterRippleAmplitude,
+          rippleCount: _waterRippleFrequency.round(),
+        );
+      case _EffectType.vortex:
+        return VortexEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          radius: 80.0,
+          revolutions: 2,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.cascade:
+        return CascadeEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          delayBetweenChars: Duration(milliseconds: _cascadeDelayPerChar.round()),
+        );
+      case _EffectType.origami:
+        return OrigamiEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          clockwise: true,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.shatter:
+        return ShatterEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          distance: 120.0,
+          bounceCount: 2,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.morph:
+        return MorphEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          seed: 42,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.curtain:
+        return CurtainEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          distance: _curtainDistance,
+        );
+      case _EffectType.stomp:
+        return StompEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          dropHeight: 100.0,
+          squashAmount: 0.3,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.typewriterError:
+        return TypewriterErrorEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          seed: 42,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.typewriterDelete:
+        return TypewriterDeleteEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          cursor: _cursorController.text,
+        );
+      case _EffectType.fallingLeaves:
+        return FallingLeavesEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          swayAmplitude: _fallingLeavesAmplitude,
+          fallDistance: 80.0,
+          rotationAmplitude: 0.3,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
+        );
+      case _EffectType.fireflies:
+        return FirefliesEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          glowColor: Colors.amber,
+          driftRadius: 100.0,
+        );
+      case _EffectType.breath:
+        return BreathEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          scaleMin: _breathScaleMin,
+        );
+      case _EffectType.circularReveal:
+        return CircularRevealEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          inward: _circularRevealInward,
+        );
+      case _EffectType.scanLines:
+        return ScanLinesEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          scanColor: Colors.cyan,
+          scanWidth: 0.15,
+          glowIntensity: 0.15,
+        );
+      case _EffectType.barWake:
+        return BarWakeEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          filledColor: Colors.green,
+          emptyColor: Colors.grey,
+          barWidth: 0.2,
+          wakeGlow: 0.3,
+        );
+      case _EffectType.weight:
+        return WeightEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          maxWeight: 1.15,
+          shiftAmount: 3.0,
+        );
+      case _EffectType.countdown:
+        return CountdownEffect(
+          duration: Duration(milliseconds: _durationMs),
+          curve: _curve,
+          seed: _countdownFrom,
+          delayBetweenChars: Duration(milliseconds: _delayMs),
         );
     }
   }
@@ -1156,6 +1385,142 @@ class _InteractiveDemoState extends State<InteractiveDemo> {
             _section('Drop Count'), _slider(value: _inkDropsDropCount.toDouble(), min: 1, max: 10, divisions: 9, label: '$_inkDropsDropCount', onChanged: (v) => setState(() => _inkDropsDropCount = v.round())),
             _section('Spread Distance'), _slider(value: _inkDropsSpreadDistance, min: 20, max: 300, label: _inkDropsSpreadDistance.toStringAsFixed(1), onChanged: (v) => setState(() => _inkDropsSpreadDistance = v)),
             _section('Seed'), _slider(value: _inkDropsSeed.toDouble(), min: 0, max: 100, divisions: 100, label: '$_inkDropsSeed', onChanged: (v) => setState(() => _inkDropsSeed = v.round())),
+          ],
+        );
+      case _EffectType.chromaticAberration:
+        return Column(
+          children: [
+            _section('Offset'), _slider(value: _chromaticOffset, min: 0, max: 20, label: _chromaticOffset.toStringAsFixed(1), onChanged: (v) => setState(() => _chromaticOffset = v)),
+            _section('Blur Sigma'), _slider(value: _chromaticBlurSigma, min: 0, max: 15, label: _chromaticBlurSigma.toStringAsFixed(1), onChanged: (v) => setState(() => _chromaticBlurSigma = v)),
+          ],
+        );
+      case _EffectType.pixelate:
+        return Column(
+          children: [
+            _section('Pixel Size'), _slider(value: _pixelateSize, min: 0.02, max: 0.3, label: _pixelateSize.toStringAsFixed(2), onChanged: (v) => setState(() => _pixelateSize = v)),
+          ],
+        );
+      case _EffectType.waterRipple:
+        return Column(
+          children: [
+            _section('Amplitude'), _slider(value: _waterRippleAmplitude, min: 1, max: 20, label: _waterRippleAmplitude.toStringAsFixed(1), onChanged: (v) => setState(() => _waterRippleAmplitude = v)),
+            _section('Frequency'), _slider(value: _waterRippleFrequency, min: 5, max: 80, label: _waterRippleFrequency.toStringAsFixed(1), onChanged: (v) => setState(() => _waterRippleFrequency = v)),
+          ],
+        );
+      case _EffectType.vortex:
+        return Column(
+          children: [
+            _section('Rotation Amp'), _slider(value: _vortexRotationAmplitude, min: 0, max: 1, label: _vortexRotationAmplitude.toStringAsFixed(2), onChanged: (v) => setState(() => _vortexRotationAmplitude = v)),
+          ],
+        );
+      case _EffectType.cascade:
+        return Column(
+          children: [
+            _section('Delay/Char (ms)'), _slider(value: _cascadeDelayPerChar, min: 5, max: 100, label: '${_cascadeDelayPerChar.round()}', onChanged: (v) => setState(() => _cascadeDelayPerChar = v)),
+          ],
+        );
+      case _EffectType.origami:
+        return Column(
+          children: [
+            _section('Fold Angle'), _slider(value: _origamiFoldAngle, min: 0, max: 3, label: _origamiFoldAngle.toStringAsFixed(2), onChanged: (v) => setState(() => _origamiFoldAngle = v)),
+          ],
+        );
+      case _EffectType.shatter:
+        return Column(
+          children: [
+            _section('Color'), _colorSwatches(selected: _shatterColor, onSelected: (c) => setState(() => _shatterColor = c)),
+          ],
+        );
+      case _EffectType.morph:
+        return Padding(
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: TextField(
+            controller: TextEditingController(text: _morphTargetText)
+              ..selection = TextSelection.collapsed(offset: _morphTargetText.length),
+            decoration: const InputDecoration(labelText: 'Target Text', border: OutlineInputBorder()),
+            onChanged: (v) => setState(() => _morphTargetText = v),
+          ),
+        );
+      case _EffectType.curtain:
+        return Column(
+          children: [
+            _section('Distance'), _slider(value: _curtainDistance, min: 10, max: 300, label: _curtainDistance.toStringAsFixed(1), onChanged: (v) => setState(() => _curtainDistance = v)),
+          ],
+        );
+      case _EffectType.stomp:
+        return Column(
+          children: [
+            _section('Scale Min'), _slider(value: _stompScaleMin, min: 0.3, max: 1, label: _stompScaleMin.toStringAsFixed(2), onChanged: (v) => setState(() => _stompScaleMin = v)),
+          ],
+        );
+      case _EffectType.typewriterError:
+        return Column(
+          children: [
+            TextField(
+              controller: TextEditingController(text: _typewriterErrorText)
+                ..selection = TextSelection.collapsed(offset: _typewriterErrorText.length),
+              decoration: const InputDecoration(labelText: 'Error Text', border: OutlineInputBorder()),
+              onChanged: (v) => setState(() => _typewriterErrorText = v),
+            ),
+            _section('Stay (ms)'), _slider(value: _typewriterErrorStayMs.toDouble(), min: 500, max: 5000, divisions: 9, label: '$_typewriterErrorStayMs', onChanged: (v) => setState(() => _typewriterErrorStayMs = v.round())),
+          ],
+        );
+      case _EffectType.typewriterDelete:
+        return Column(
+          children: [
+            _section('Stay (ms)'), _slider(value: _typewriterDeleteStayMs.toDouble(), min: 500, max: 5000, divisions: 9, label: '$_typewriterDeleteStayMs', onChanged: (v) => setState(() => _typewriterDeleteStayMs = v.round())),
+          ],
+        );
+      case _EffectType.fallingLeaves:
+        return Column(
+          children: [
+            _section('Color'), _colorSwatches(selected: _fallingLeavesColor, onSelected: (c) => setState(() => _fallingLeavesColor = c)),
+            _section('Count'), _slider(value: _fallingLeavesCount, min: 1, max: 10, divisions: 9, label: '${_fallingLeavesCount.round()}', onChanged: (v) => setState(() => _fallingLeavesCount = v)),
+            _section('Amplitude'), _slider(value: _fallingLeavesAmplitude, min: 5, max: 80, label: _fallingLeavesAmplitude.toStringAsFixed(1), onChanged: (v) => setState(() => _fallingLeavesAmplitude = v)),
+          ],
+        );
+      case _EffectType.fireflies:
+        return Column(
+          children: [
+            _section('Count'), _slider(value: _firefliesCount, min: 1, max: 10, divisions: 9, label: '${_firefliesCount.round()}', onChanged: (v) => setState(() => _firefliesCount = v)),
+            _section('Speed'), _slider(value: _firefliesSpeed, min: 0.2, max: 3, label: _firefliesSpeed.toStringAsFixed(1), onChanged: (v) => setState(() => _firefliesSpeed = v)),
+          ],
+        );
+      case _EffectType.breath:
+        return Column(
+          children: [
+            _section('Scale Min'), _slider(value: _breathScaleMin, min: 0.7, max: 1, label: _breathScaleMin.toStringAsFixed(2), onChanged: (v) => setState(() => _breathScaleMin = v)),
+          ],
+        );
+      case _EffectType.circularReveal:
+        return Column(
+          children: [
+            Row(children: [const Text('Inward'), Switch(value: _circularRevealInward, onChanged: (v) => setState(() => _circularRevealInward = v)), const Text('Outward')]),
+          ],
+        );
+      case _EffectType.scanLines:
+        return Column(
+          children: [
+            _section('Line Size'), _slider(value: _scanLinesSize, min: 1, max: 10, label: _scanLinesSize.toStringAsFixed(1), onChanged: (v) => setState(() => _scanLinesSize = v)),
+          ],
+        );
+      case _EffectType.barWake:
+        return Column(
+          children: [
+            _section('Bar Count'), _slider(value: _barWakeCount, min: 1, max: 10, divisions: 9, label: '${_barWakeCount.round()}', onChanged: (v) => setState(() => _barWakeCount = v)),
+            _section('Bar Height'), _slider(value: _barWakeHeight, min: 0.1, max: 1, label: _barWakeHeight.toStringAsFixed(2), onChanged: (v) => setState(() => _barWakeHeight = v)),
+          ],
+        );
+      case _EffectType.weight:
+        return Column(
+          children: [
+            _section('Scale Min'), _slider(value: _weightScaleMin, min: 0.3, max: 1, label: _weightScaleMin.toStringAsFixed(2), onChanged: (v) => setState(() => _weightScaleMin = v)),
+          ],
+        );
+      case _EffectType.countdown:
+        return Column(
+          children: [
+            _section('Count From'), _slider(value: _countdownFrom.toDouble(), min: 3, max: 30, divisions: 27, label: '$_countdownFrom', onChanged: (v) => setState(() => _countdownFrom = v.round())),
           ],
         );
     }

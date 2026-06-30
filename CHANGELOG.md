@@ -1,3 +1,14 @@
+## 0.0.6
+
+- **21 new effects**: Chromatic Aberration, Pixelate, Water Ripple, Vortex, Cascade, Origami, Shatter, Morph, Curtain, Stomp, Typewriter Error, Typewriter Delete, Falling Leaves, Fireflies, Breath, Circular Reveal, Scan Lines, Bar Wake, Weight, Countdown
+- **All effects now return to identity state** at both ends (f(0) == f(1)): Cascade, Typewriter Delete, Scan Lines, Bar Wake, Weight
+- **GIFs generated** for all 73 effects in the interactive demo
+- **Interactive demo** updated with all new effects
+- **Comprehensive demo** and **main.dart** updated with `repeat: true` on all effects
+- **GIF capture tests** expanded to 73 scenarios
+- **Docs**: generate_effects_section.dart script updated, README includes all 21 new effects with code examples and GIFs
+- **Tests**: 73/73 GIF capture scenarios pass
+
 ## 0.0.5
 
 - **GIFs más fluidos**: Frames por defecto aumentados de 24→40, totalMs de 2400→4000
