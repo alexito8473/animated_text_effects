@@ -3,7 +3,7 @@
 A Flutter package for text with **66 composable animation effects** and **4 animated counter widgets**. Combine effects freely, control playback, and persist state across scroll off-screen.
 
 <p align="center">
-  <img src="doc/screenshots/combo.gif" width="600" alt="Combined effects demo">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/combo.gif" width="600" alt="Combined effects demo">
 </p>
 <p align="center">
   <img src="https://img.shields.io/badge/Flutter-3.3%2B-blue?style=flat-square&labelColor=333" alt="Flutter">
@@ -39,7 +39,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/fade.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/fade.gif" width="600">
 </p>
 
 ---
@@ -55,7 +55,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/slide.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/slide.gif" width="600">
 </p>
 
 ---
@@ -71,7 +71,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/blur.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/blur.gif" width="600">
 </p>
 
 ---
@@ -87,7 +87,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/typewriter.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/typewriter.gif" width="600">
 </p>
 
 ---
@@ -103,7 +103,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/scatter.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/scatter.gif" width="600">
 </p>
 
 ---
@@ -119,7 +119,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/staggered.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/staggered.gif" width="600">
 </p>
 
 ---
@@ -135,7 +135,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/random_reveal.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/random_reveal.gif" width="600">
 </p>
 
 ---
@@ -151,7 +151,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/reveal.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/reveal.gif" width="600">
 </p>
 
 ---
@@ -167,7 +167,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/scramble.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/scramble.gif" width="600">
 </p>
 
 ---
@@ -183,7 +183,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/pop_in.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/pop_in.gif" width="600">
 </p>
 
 ---
@@ -199,7 +199,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/ripple.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/ripple.gif" width="600">
 </p>
 
 ---
@@ -215,7 +215,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/elastic.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/elastic.gif" width="600">
 </p>
 
 ---
@@ -234,7 +234,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/wave.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/wave.gif" width="600">
 </p>
 
 ---
@@ -250,7 +250,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/bounce.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/bounce.gif" width="600">
 </p>
 
 ---
@@ -266,7 +266,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/wiggle.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/wiggle.gif" width="600">
 </p>
 
 ---
@@ -282,7 +282,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/shake.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/shake.gif" width="600">
 </p>
 
 ---
@@ -298,7 +298,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/pulse.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/pulse.gif" width="600">
 </p>
 
 ---
@@ -314,7 +314,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/spin.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/spin.gif" width="600">
 </p>
 
 ---
@@ -330,7 +330,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/flip.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/flip.gif" width="600">
 </p>
 
 ---
@@ -346,7 +346,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/flag_wave.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/flag_wave.gif" width="600">
 </p>
 
 ---
@@ -362,7 +362,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/liquid.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/liquid.gif" width="600">
 </p>
 
 ---
@@ -378,7 +378,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/conveyor.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/conveyor.gif" width="600">
 </p>
 
 ---
@@ -397,7 +397,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/gradient.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/gradient.gif" width="600">
 </p>
 
 ---
@@ -413,7 +413,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/rainbow.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/rainbow.gif" width="600">
 </p>
 
 ---
@@ -429,7 +429,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/glow.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/glow.gif" width="600">
 </p>
 
 ---
@@ -445,7 +445,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/shimmer.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/shimmer.gif" width="600">
 </p>
 
 ---
@@ -461,7 +461,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/wave_color.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/wave_color.gif" width="600">
 </p>
 
 ---
@@ -477,7 +477,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/breathing.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/breathing.gif" width="600">
 </p>
 
 ---
@@ -493,7 +493,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/glow_reveal.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/glow_reveal.gif" width="600">
 </p>
 
 ---
@@ -509,7 +509,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/neon_flicker.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/neon_flicker.gif" width="600">
 </p>
 
 ---
@@ -525,7 +525,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/highlight.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/highlight.gif" width="600">
 </p>
 
 ---
@@ -541,7 +541,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/sparkle.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/sparkle.gif" width="600">
 </p>
 
 ---
@@ -557,7 +557,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/scanner.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/scanner.gif" width="600">
 </p>
 
 ---
@@ -576,7 +576,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/fire.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/fire.gif" width="600">
 </p>
 
 ---
@@ -592,7 +592,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/smoke.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/smoke.gif" width="600">
 </p>
 
 ---
@@ -608,7 +608,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/vhs_glitch.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/vhs_glitch.gif" width="600">
 </p>
 
 ---
@@ -624,7 +624,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/glitch_split.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/glitch_split.gif" width="600">
 </p>
 
 ---
@@ -640,7 +640,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/matrix.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/matrix.gif" width="600">
 </p>
 
 ---
@@ -656,7 +656,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/melt_drip.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/melt_drip.gif" width="600">
 </p>
 
 ---
@@ -672,7 +672,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/kinetic.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/kinetic.gif" width="600">
 </p>
 
 ---
@@ -688,7 +688,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/split_reveal.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/split_reveal.gif" width="600">
 </p>
 
 ---
@@ -704,7 +704,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/ink_drops.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/ink_drops.gif" width="600">
 </p>
 ---
 
@@ -719,7 +719,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/chromatic_aberration.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/chromatic_aberration.gif" width="600">
 </p>
 
 ---
@@ -735,7 +735,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/pixelate.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/pixelate.gif" width="600">
 </p>
 
 ---
@@ -751,7 +751,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/water_ripple.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/water_ripple.gif" width="600">
 </p>
 
 ---
@@ -767,7 +767,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/vortex.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/vortex.gif" width="600">
 </p>
 
 ---
@@ -783,7 +783,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/cascade.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/cascade.gif" width="600">
 </p>
 
 ---
@@ -799,7 +799,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/origami.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/origami.gif" width="600">
 </p>
 
 ---
@@ -815,7 +815,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/shatter.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/shatter.gif" width="600">
 </p>
 
 ---
@@ -831,7 +831,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/morph.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/morph.gif" width="600">
 </p>
 
 ---
@@ -847,7 +847,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/curtain.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/curtain.gif" width="600">
 </p>
 
 ---
@@ -863,7 +863,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/stomp.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/stomp.gif" width="600">
 </p>
 
 ---
@@ -879,7 +879,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/typewriter_error.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/typewriter_error.gif" width="600">
 </p>
 
 ---
@@ -895,7 +895,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/typewriter_delete.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/typewriter_delete.gif" width="600">
 </p>
 
 ---
@@ -911,7 +911,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/falling_leaves.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/falling_leaves.gif" width="600">
 </p>
 
 ---
@@ -927,7 +927,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/fireflies.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/fireflies.gif" width="600">
 </p>
 
 ---
@@ -943,7 +943,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/breath.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/breath.gif" width="600">
 </p>
 
 ---
@@ -959,7 +959,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/circular_reveal.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/circular_reveal.gif" width="600">
 </p>
 
 ---
@@ -975,7 +975,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/scan_lines.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/scan_lines.gif" width="600">
 </p>
 
 ---
@@ -991,7 +991,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/bar_wake.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/bar_wake.gif" width="600">
 </p>
 
 ---
@@ -1007,7 +1007,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/weight.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/weight.gif" width="600">
 </p>
 
 ---
@@ -1023,7 +1023,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/countdown.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/countdown.gif" width="600">
 </p>
 
 ---
@@ -1040,7 +1040,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/progress.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/progress.gif" width="600">
 </p>
 
 ---
@@ -1056,7 +1056,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/tracking.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/tracking.gif" width="600">
 </p>
 
 ---
@@ -1072,7 +1072,7 @@ AnimatedText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/underline.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/underline.gif" width="600">
 </p>
 
 ---
@@ -1097,7 +1097,7 @@ AnimatedTextSequence(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/sequence.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/sequence.gif" width="600">
 </p>
 
 ---
@@ -1117,7 +1117,7 @@ AnimatedRichText(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/rich_text.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/rich_text.gif" width="600">
 </p>
 
 ---
@@ -1133,7 +1133,7 @@ AnimatedCounter(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/animated_counter.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/animated_counter.gif" width="600">
 </p>
 
 ---
@@ -1149,7 +1149,7 @@ AnimatedPercentage(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/animated_percentage.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/animated_percentage.gif" width="600">
 </p>
 
 ---
@@ -1166,7 +1166,7 @@ AnimatedCurrency(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/animated_currency.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/animated_currency.gif" width="600">
 </p>
 
 ---
@@ -1181,7 +1181,7 @@ RollingDigitCounter(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/rolling_digit.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/rolling_digit.gif" width="600">
 </p>
 
 ---
@@ -1198,7 +1198,7 @@ AnimatedStatCard(
 ```
 
 <p align="center">
-  <img src="doc/screenshots/stat_card.gif" width="600">
+  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/stat_card.gif" width="600">
 </p>
 
 ---

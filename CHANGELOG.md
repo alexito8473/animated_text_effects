@@ -1,4 +1,4 @@
-## 0.0.6
+## 0.0.7
 
 - **21 new effects**: Chromatic Aberration, Pixelate, Water Ripple, Vortex, Cascade, Origami, Shatter, Morph, Curtain, Stomp, Typewriter Error, Typewriter Delete, Falling Leaves, Fireflies, Breath, Circular Reveal, Scan Lines, Bar Wake, Weight, Countdown
 - **All effects now return to identity state** at both ends (f(0) == f(1)): Cascade, Typewriter Delete, Scan Lines, Bar Wake, Weight

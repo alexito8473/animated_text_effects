@@ -94,7 +94,7 @@ void main() {
     buffer.writeln('```');
     buffer.writeln();
     buffer.writeln('<p align="center">');
-    buffer.writeln('  <img src="doc/screenshots/${e.gifName}.gif" width="600">');
+    buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/${e.gifName}.gif" width="600">');
     buffer.writeln('</p>');
     buffer.writeln();
     buffer.writeln('---');
@@ -121,7 +121,7 @@ void main() {
   buffer.writeln('```');
   buffer.writeln();
   buffer.writeln('<p align="center">');
-  buffer.writeln('  <img src="doc/screenshots/sequence.gif" width="600">');
+  buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/sequence.gif" width="600">');
   buffer.writeln('</p>');
   buffer.writeln();
   buffer.writeln('---');
@@ -142,7 +142,7 @@ void main() {
   buffer.writeln('```');
   buffer.writeln();
   buffer.writeln('<p align="center">');
-  buffer.writeln('  <img src="doc/screenshots/rich_text.gif" width="600">');
+  buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/rich_text.gif" width="600">');
   buffer.writeln('</p>');
   buffer.writeln();
   buffer.writeln('---');
@@ -159,7 +159,7 @@ void main() {
   buffer.writeln('```');
   buffer.writeln();
   buffer.writeln('<p align="center">');
-  buffer.writeln('  <img src="doc/screenshots/animated_counter.gif" width="600">');
+  buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/animated_counter.gif" width="600">');
   buffer.writeln('</p>');
   buffer.writeln();
   buffer.writeln('---');
@@ -176,7 +176,7 @@ void main() {
   buffer.writeln('```');
   buffer.writeln();
   buffer.writeln('<p align="center">');
-  buffer.writeln('  <img src="doc/screenshots/animated_percentage.gif" width="600">');
+  buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/animated_percentage.gif" width="600">');
   buffer.writeln('</p>');
   buffer.writeln();
   buffer.writeln('---');
@@ -194,7 +194,7 @@ void main() {
   buffer.writeln('```');
   buffer.writeln();
   buffer.writeln('<p align="center">');
-  buffer.writeln('  <img src="doc/screenshots/animated_currency.gif" width="600">');
+  buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/animated_currency.gif" width="600">');
   buffer.writeln('</p>');
   buffer.writeln();
   buffer.writeln('---');
@@ -210,7 +210,7 @@ void main() {
   buffer.writeln('```');
   buffer.writeln();
   buffer.writeln('<p align="center">');
-  buffer.writeln('  <img src="doc/screenshots/rolling_digit.gif" width="600">');
+  buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/rolling_digit.gif" width="600">');
   buffer.writeln('</p>');
   buffer.writeln();
   buffer.writeln('---');
@@ -228,7 +228,7 @@ void main() {
   buffer.writeln('```');
   buffer.writeln();
   buffer.writeln('<p align="center">');
-  buffer.writeln('  <img src="doc/screenshots/stat_card.gif" width="600">');
+  buffer.writeln('  <img src="https://raw.githubusercontent.com/alexito8473/animated_text_effects/main/doc/screenshots/stat_card.gif" width="600">');
   buffer.writeln('</p>');
   buffer.writeln();
   buffer.writeln('---');
